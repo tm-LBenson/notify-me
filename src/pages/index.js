@@ -1,3 +1,4 @@
+import Navbar from '@src/components/Navbar';
 import Timer from '@src/components/Timer';
 
 import Head from 'next/head';
@@ -20,8 +21,8 @@ export default function Home() {
           href="/favicon.ico"
         />
       </Head>
+      <Navbar />
       <main>
-        <h1>Notify-Me</h1>
         <Timer />
       </main>
     </>

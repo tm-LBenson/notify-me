@@ -1,0 +1,83 @@
+// About page container
+.about-container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: $spacing-lg;
+
+  @include respond(md) {
+    padding: $spacing-md;
+  }
+}
+
+// About page title
+.about-title {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $primary;
+  margin-bottom: $spacing-md;
+}
+
+// About page content
+.about-content {
+  font-size: $font-size-md;
+  line-height: $line-height-base;
+  color: $dark;
+
+  p {
+    margin-bottom: $spacing-md;
+  }
+
+  // About page subtitle
+  h2 {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $secondary;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+// About page team section
+.about-team {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  // Team member card
+  .team-member {
+    width: calc(33.333% - #{$spacing-md});
+    margin-bottom: $spacing-md;
+
+    @include respond(sm) {
+      width: calc(50% - #{$spacing-md});
+    }
+
+    @include respond(xs) {
+      width: 100%;
+    }
+
+    // Team member image
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: $border-radius;
+    }
+
+    // Team member name
+    h3 {
+      font-size: $font-size-md;
+      font-weight: $font-weight-bold;
+      color: $primary;
+      margin-top: $spacing-sm;
+      margin-bottom: $spacing-xs;
+    }
+
+    // Team member title
+    h4 {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-semibold;
+      color: $dark;
+      margin-bottom: $spacing-xs;
+    }
+  }
+}

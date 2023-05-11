@@ -34,9 +34,8 @@ $lighter-primary-hover: #b8daff;
 // Typography
 $font-size-sm: 1rem;
 $font-size-md: 1.6rem;
+$font-size-xl: 2.4rem;
 $font-size-lg: 2rem;
-$font-size-xl: 4rem;
-$font-size-xxl: 5rem;
 $font-weight-bold: 700;
 $line-height-base: 1.5;
 $link-color: hsl(204, 100%, 50%);
@@ -75,41 +74,43 @@ $grid-gutter-width: 1.5rem;
 // Transitions
 $transition-duration: 0.3s;
 
-// Portfolio Color Scheme
-// Variables
-$border-radius: 4px;
-$spacing-sm: 0.5rem;
-$spacing-md: 1rem;
-$spacing-lg: 2rem;
+// Notify-me App specific colors
+$timer-color: hsl(25, 68%, 52%); // An orange color for timers
+$timer-hover: hsl(25, 68%, 42%);
+$notification-color: hsl(260, 100%, 50%); // A vibrant purple for notifications
+$notification-hover: hsl(260, 100%, 40%);
+$active-timer-color: hsl(
+  354,
+  80%,
+  58%
+); // A vibrant red color for active timers
+$active-timer-hover: hsl(354, 80%, 48%);
+$inactive-timer-color: hsl(122, 39%, 49%); // A muted green for inactive timers
+$inactive-timer-hover: hsl(122, 39%, 39%);
 
-$font-size-base: 16px;
-$font-weight-bold: 700;
+.timer__time-picker {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-md;
 
-$portfolio-primary-font: 2rem;
-$portfolio-primary: hsl(210, 50%, 40%);
-$portfolio-primary-dark: hsl(210, 50%, 30%);
-$portfolio-primary-light: hsl(210, 50%, 60%);
-$portfolio-secondary: hsl(35, 75%, 55%);
-$portfolio-secondary-dark: hsl(35, 75%, 45%);
-$portfolio-secondary-light: hsl(35, 75%, 65%);
-$portfolio-background: hsl(210, 10%, 98%);
-$portfolio-text: hsl(210, 10%, 20%);
-$portfolio-text-light: hsl(209, 39%, 78%);
-$portfolio-link: hsl(210, 100%, 40%);
-$portfolio-link-hover: hsl(210, 100%, 30%);
-$portfolio-cta-background: hsl(35, 75%, 55%);
-$portfolio-cta-background-hover: hsl(35, 75%, 45%);
-$portfolio-cta-text: hsl(0, 0%, 100%);
-$portfolio-divider: hsl(210, 10%, 90%);
-$portfolio-sidebar: hsl(210, 10%, 92%);
-$portfolio-logo: hsl(210, 50%, 40%);
-$portfolio-header: hsl(210, 10%, 20%);
-$portfolio-link-active: hsl(210, 50%, 30%);
+  &__label {
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    color: $dark;
+    margin-right: $spacing-sm;
+  }
 
-$input-border-color: $portfolio-text-light;
-$input-focus-border-color: $portfolio-primary;
-$input-disabled-color: lighten($portfolio-primary-light, 10%);
+  &__input {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-md;
+    color: $dark;
+    border: 1px solid $input-border-color;
+    border-radius: $border-radius;
+    background-color: $white;
 
-$blog-font: 1.6rem;
-$blog-heading: hsl(210, 10%, 30%);
-$blog-text: hsl(210, 10%, 20%);
+    &:focus {
+      outline: none;
+      border-color: $primary;
+    }
+  }
+}

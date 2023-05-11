@@ -2,25 +2,10 @@
 
 // Header container
 .header {
-  width: 100%;
   background-color: $header-bg-color;
   padding: $spacing-md 0;
-  position: fixed;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem;
-  align-items: center;
-  font-size: 2.1rem;
-  transition: transform 0.3s ease-in-out;
-  padding-right: 4rem;
-  z-index: 5000;
-}
-
-// Add this to your _header.scss
-.header.slide-up {
-  transform: translateY(-100%);
-  transition: transform 0.3s ease-in-out;
+  position: relative;
+  z-index: 1000;
 }
 
 // Site logo
@@ -41,7 +26,6 @@
   align-items: center;
   list-style: none;
   padding-left: 0;
-  margin-left: $spacing-lg;
 
   @media (max-width: $nav-breakpoint) {
     display: none;
@@ -67,13 +51,45 @@
     color: $header-link-hover-color;
   }
 }
-.nav-links {
+
+.navbar {
+  li {
+    list-style: none;
+  }
+
   display: flex;
-  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md $spacing-lg;
+  background-color: $dark;
+  box-shadow: 0 2px 4px $dark-hover;
+
+  &__logo {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $white;
+  }
+
+  &__link {
+    color: $white;
+    font-size: $font-size-md;
+    text-decoration: none;
+    margin-left: $spacing-md;
+    transition: color $transition-duration;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  &__items {
+    display: flex;
+    list-style: none;
+  }
 }
+
 // Mobile navigation
-.hamburger-react {
-  z-index: 5000;
+.hamburger {
   display: none;
   cursor: pointer;
 
@@ -82,26 +98,21 @@
   }
 }
 
-// Desktop navigation
-.nav {
-  display: flex;
-  justify-content: flex-end;
-  gap: $spacing-md;
+.mobile-nav {
+  display: none;
 
-  li {
-    display: inline-block;
+  @media (max-width: $nav-breakpoint) {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba($header-bg-color, 0.95);
+    padding: $spacing-md 0;
   }
+}
 
-  .cta-button {
-    padding: $spacing-xs $spacing-md;
-    border-radius: $border-radius;
-    background-color: $portfolio-cta-background;
-    color: $portfolio-cta-text;
-    transition: background-color $transition-duration ease-in-out;
-
-    &:hover,
-    &:focus {
-      background-color: $portfolio-cta-background-hover;
-    }
-  }
+* {
+  outline: red 1px solid;
 }

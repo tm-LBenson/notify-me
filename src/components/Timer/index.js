@@ -20,10 +20,15 @@ const Timer = () => {
   };
 
   return (
-    <div>
-      <h2>Select a time:</h2>
+    <div className="timer">
+      <h2 className="timer__header">Select a time:</h2>
       <TimePicker onTimeChange={handleTimeChange} />
-      <button onClick={handleSetNotification}>Set Alarm</button>
+      <button
+        onClick={handleSetNotification}
+        className="btn timer__button timer__button--active"
+      >
+        Set Alarm
+      </button>
     </div>
   );
 };
