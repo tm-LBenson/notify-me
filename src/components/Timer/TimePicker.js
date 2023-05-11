@@ -15,14 +15,20 @@ const TimePicker = ({ onTimeChange }) => {
   };
 
   return (
-    <div className="time-picker">
-      <label htmlFor="time">Select a time:</label>
+    <div className="timer__time-picker">
+      <label
+        htmlFor="time"
+        className="timer__time-picker__label"
+      >
+        Select a time:
+      </label>
       <input
         type="time"
         id="time"
         name="time"
         value={time}
         onChange={handleTimeChange}
+        className="timer__time-picker__input"
       />
     </div>
   );
