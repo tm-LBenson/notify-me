@@ -1,0 +1,115 @@
+// Colors
+$color-soft-gray: hsl(0, 6%, 52%);
+$white: hsl(0, 0%, 100%);
+$dark: hsl(210, 13%, 16%);
+$primary: hsl(208, 100%, 50%);
+$primary-hover: hsl(208, 100%, 36%);
+$secondary: hsl(204, 14%, 43%);
+$secondary-hover: hsl(204, 16%, 30%);
+$success: hsl(122, 70%, 42%);
+$success-hover: hsl(122, 64%, 24%);
+$danger: hsl(354, 67%, 43%);
+$danger-hover: hsl(354, 62%, 35%);
+$warning: hsl(43, 100%, 50%);
+$warning-hover: hsl(43, 100%, 44%);
+$info: hsl(194, 88%, 38%);
+$info-hover: hsl(194, 87%, 33%);
+$light: hsl(210, 17%, 98%);
+$light-hover: hsl(210, 14%, 89%);
+$dark-hover: hsl(210, 10%, 17%);
+$input-border-color: hsl(0, 0%, 88%);
+$input-focus-border-color: $primary;
+$input-disabled-color: hsl(0, 0%, 88%);
+$error-color: hsl(6, 78%, 57%);
+$success-color: hsl(141, 71%, 48%);
+$footer-bg: hsl(0, 0%, 20%);
+$footer-text-color: hsl(0, 0%, 100%);
+$footer-link-color: hsl(0, 0%, 80%);
+
+//Side Bar colors
+$lighter-bg: #f8f9fa;
+$lighter-primary: #cce5ff;
+$lighter-primary-hover: #b8daff;
+
+// Typography
+$font-size-sm: 1rem;
+$font-size-md: 1.6rem;
+$font-size-lg: 2rem;
+$font-size-xl: 4rem;
+$font-size-xxl: 5rem;
+$font-weight-bold: 700;
+$line-height-base: 1.5;
+$link-color: hsl(204, 100%, 50%);
+$link-hover-color: hsl(204, 100%, 41%);
+$blockquote-border-color: hsl(0, 0%, 92%);
+
+// Spacing
+$spacing-xs: 0.4rem;
+$spacing-sm: 0.8rem;
+$spacing-md: 1.6rem;
+$spacing-lg: 2.4rem;
+$spacing-xl: 3.2rem;
+
+// Container width
+$container-width: 114rem;
+
+// Breakpoints
+$breakpoint-md: 76.8rem;
+
+$border-radius: 0.4rem;
+
+$font-size-base: 2.5rem;
+$font-weight-normal: 400;
+$font-weight-semibold: 500;
+
+$header-bg-color: hsl(0, 0%, 20%);
+$header-link-color: hsl(0, 0%, 100%);
+$header-link-hover-color: hsl(0, 0%, 80%);
+$nav-breakpoint: 76.7rem;
+
+$container-max-width: 120rem;
+$container-padding-sm: 1.5rem;
+$container-padding-md: 3rem;
+$grid-gutter-width: 1.5rem;
+
+// Transitions
+$transition-duration: 0.3s;
+
+// Portfolio Color Scheme
+// Variables
+$border-radius: 4px;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 2rem;
+
+$font-size-base: 16px;
+$font-weight-bold: 700;
+
+$portfolio-primary-font: 2rem;
+$portfolio-primary: hsl(210, 50%, 40%);
+$portfolio-primary-dark: hsl(210, 50%, 30%);
+$portfolio-primary-light: hsl(210, 50%, 60%);
+$portfolio-secondary: hsl(35, 75%, 55%);
+$portfolio-secondary-dark: hsl(35, 75%, 45%);
+$portfolio-secondary-light: hsl(35, 75%, 65%);
+$portfolio-background: hsl(210, 10%, 98%);
+$portfolio-text: hsl(210, 10%, 20%);
+$portfolio-text-light: hsl(209, 39%, 78%);
+$portfolio-link: hsl(210, 100%, 40%);
+$portfolio-link-hover: hsl(210, 100%, 30%);
+$portfolio-cta-background: hsl(35, 75%, 55%);
+$portfolio-cta-background-hover: hsl(35, 75%, 45%);
+$portfolio-cta-text: hsl(0, 0%, 100%);
+$portfolio-divider: hsl(210, 10%, 90%);
+$portfolio-sidebar: hsl(210, 10%, 92%);
+$portfolio-logo: hsl(210, 50%, 40%);
+$portfolio-header: hsl(210, 10%, 20%);
+$portfolio-link-active: hsl(210, 50%, 30%);
+
+$input-border-color: $portfolio-text-light;
+$input-focus-border-color: $portfolio-primary;
+$input-disabled-color: lighten($portfolio-primary-light, 10%);
+
+$blog-font: 1.6rem;
+$blog-heading: hsl(210, 10%, 30%);
+$blog-text: hsl(210, 10%, 20%);

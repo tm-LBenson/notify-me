@@ -1,0 +1,75 @@
+// Contact page container
+.contact-container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: $spacing-lg;
+
+  @include respond(md) {
+    padding: $spacing-md;
+  }
+}
+
+// Contact page title
+.contact-title {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $primary;
+  margin-bottom: $spacing-md;
+}
+
+// Contact page content
+.contact-content {
+  font-size: $font-size-md;
+  line-height: $line-height-base;
+  color: $dark;
+
+  p {
+    margin-bottom: $spacing-md;
+  }
+}
+
+// Contact form
+.contact-form {
+  @include form; // Use the form mixin created in your _mixins.scss
+
+  // Contact form submit button
+  button[type='submit'] {
+    width: 100%;
+    margin-top: $spacing-md;
+
+    @include respond(md) {
+      width: auto;
+    }
+  }
+}
+
+// Contact information
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  margin-top: $spacing-xl;
+
+  @include respond(md) {
+    flex-direction: row;
+  }
+
+  // Contact info item
+  .info-item {
+    display: flex;
+    align-items: center;
+
+    // Icon
+    i {
+      font-size: $font-size-lg;
+      color: $primary;
+      margin-right: $spacing-sm;
+    }
+
+    // Text
+    p {
+      font-size: $font-size-md;
+      color: $dark;
+    }
+  }
+}

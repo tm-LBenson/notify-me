@@ -1,0 +1,91 @@
+// Margins
+.mt-sm {
+  margin-top: 1rem;
+}
+
+.mb-sm {
+  margin-bottom: 1rem;
+}
+
+.ml-sm {
+  margin-left: 1rem;
+}
+
+.mr-sm {
+  margin-right: 1rem;
+}
+
+.my-sm {
+  margin: 1rem 0;
+}
+
+.mx-sm {
+  margin: 0 1rem;
+}
+
+// Paddings
+.pt-sm {
+  padding-top: 1rem;
+}
+
+.pb-sm {
+  padding-bottom: 1rem;
+}
+
+.pl-sm {
+  padding-left: 1rem;
+}
+
+.pr-sm {
+  padding-right: 1rem;
+}
+
+.py-sm {
+  padding: 1rem 0;
+}
+
+.px-sm {
+  padding: 0 1rem;
+}
+
+// Display
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-none {
+  display: none;
+}
+
+// Text Alignment
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.pointer {
+  cursor: pointer;
+}

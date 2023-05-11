@@ -1,0 +1,44 @@
+/* _mantine.scss */
+
+/* 
+To use Mantine components and customize their styles, follow these steps:
+
+1. Install the necessary Mantine packages:
+   npm i @mantine/core
+   npm i @mantine/hooks
+
+2. Locate the component's SCSS file in the node_modules/@mantine/core/src directory.
+
+3. Import the component's SCSS file into your project's SCSS files.
+
+4. Override the default variables or add your own custom styles for the component.
+
+Example: Customize the Button component
+*/
+
+// Step 2: Locate the Button component's SCSS file
+// The file is located at node_modules/@mantine/core/src/components/Button/Button.scss
+
+// Step 3: Import the Button component's SCSS file into your project's SCSS files
+//@import '../node_modules/@mantine/core/src/components/Button/Button';
+
+// Step 4: Override the default variables or add your own custom styles for the Button component
+$button-primary-color: #f06c9b;
+$button-primary-background-color: #1d1f2f;
+
+.Button {
+  border-radius: 8px;
+
+  &--hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* 
+Remember to compile your SCSS files into CSS and include the compiled CSS file in your project.
+Please note that customizing Mantine components' styles using SCSS is an advanced technique, 
+and it's not the primary way of styling Mantine components. Mantine provides a built-in theming 
+system that allows you to customize the appearance of your components more easily. You can learn 
+more about Mantine's theming system in their official documentation: 
+https://mantine.dev/core/getting-started/theming/
+*/

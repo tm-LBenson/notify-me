@@ -1,0 +1,46 @@
+#contact {
+  max-width: 30vw;
+  margin: auto;
+  margin: 15rem auto;
+  @media (max-width: 768px) {
+    max-width: 90vw;
+  }
+  h2 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: $portfolio-primary-font;
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  ul.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 0;
+    list-style: none;
+
+    li {
+      a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        color: $portfolio-text-light;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $portfolio-link;
+        }
+      }
+    }
+  }
+}
