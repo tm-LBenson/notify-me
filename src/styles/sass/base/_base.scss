@@ -20,12 +20,11 @@
 
 html {
   font-size: 62.5%; // 1 rem = 10px | 10/16 = 62.5
-  width: 99 vw;
 }
 
 body {
   box-sizing: border-box;
-  background-color: hsl(210, 10%, 98%);
+  background-color: $color-soft-gray;
 
   border-top: 0;
   border-bottom: 0;

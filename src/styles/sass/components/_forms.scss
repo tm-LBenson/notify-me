@@ -1,59 +1,44 @@
-.form {
+/* _forms.scss */
+
+.form-group {
   display: flex;
   flex-direction: column;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+}
 
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: $spacing-lg;
+// Use the form mixin for common form element styles
+@include form;
 
-    &.form-field-inline {
-      flex-direction: row;
-      align-items: center;
+button[type='submit'] {
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  color: $white;
+  background-color: $primary;
+  border: none;
+  border-radius: $border-radius;
+  padding: $spacing-md $spacing-lg;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 
-      label,
-      input,
-      textarea,
-      select {
-        margin-right: $spacing-md;
-      }
-    }
+  &:hover,
+  &:focus {
+    background-color: $primary-hover;
   }
 
-  input[type='text'],
-  input[type='email'],
-  textarea {
-    width: 100%;
-    resize: vertical;
-    min-height: 100px;
+  &:disabled {
+    background-color: $input-disabled-color;
+    cursor: not-allowed;
   }
-  #name,
-  #email {
-    min-height: 30px;
-    height: 30px;
-  }
+}
 
-  .submit {
-    font-size: 1.5rem;
-    align-self: flex-end;
-    background-color: $portfolio-cta-background;
-    color: $portfolio-cta-text;
-    padding: $spacing-sm $spacing-md;
-    border-radius: $border-radius;
-    font-weight: $font-weight-bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+.error-message {
+  font-size: 0.875rem;
+  color: $error-color;
+  margin-top: $spacing-xs;
+}
 
-    &:hover {
-      background-color: $portfolio-cta-background-hover;
-    }
-  }
-
-  .response-message {
-    color: $portfolio-primary;
-    margin-top: $spacing-md;
-  }
+.success-message {
+  font-size: 0.875rem;
+  color: $success-color;
+  margin-top: $spacing-xs;
 }

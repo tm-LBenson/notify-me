@@ -20,16 +20,7 @@
 @import 'components/forms';
 @import 'components/cards';
 @import 'components/sidebar';
-@import 'components/mobile-nav';
-@import 'components/hero';
-@import 'components/about';
-@import 'components/skills';
-@import 'components/projects';
-@import 'components/contact';
-@import 'components/code';
-@import 'components/blog-card';
-
-// Layout
+@import 'components/timer'; // Layout
 @import 'layout/header';
 @import 'layout/footer';
 @import 'layout/grid';
@@ -38,9 +29,7 @@
 @import 'pages/home';
 @import 'pages/about';
 @import 'pages/contact';
-@import 'pages/case-study';
-@import 'pages/blog';
-@import 'pages/resume';
+
 // Themes
 @import 'themes/default';
 @import 'themes/dark-mode';

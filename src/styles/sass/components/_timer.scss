@@ -1,0 +1,26 @@
+.timer__button {
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-md;
+  font-weight: $font-weight-bold;
+  color: $white;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: background-color $transition-duration ease-in-out;
+
+  &--active {
+    background-color: $active-timer-color;
+    &:hover,
+    &:focus {
+      background-color: $active-timer-hover;
+    }
+  }
+
+  &--inactive {
+    background-color: $inactive-timer-color;
+    &:hover,
+    &:focus {
+      background-color: $inactive-timer-hover;
+    }
+  }
+}
