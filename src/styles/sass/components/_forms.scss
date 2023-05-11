@@ -1,0 +1,59 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $spacing-lg;
+
+    &.form-field-inline {
+      flex-direction: row;
+      align-items: center;
+
+      label,
+      input,
+      textarea,
+      select {
+        margin-right: $spacing-md;
+      }
+    }
+  }
+
+  input[type='text'],
+  input[type='email'],
+  textarea {
+    width: 100%;
+    resize: vertical;
+    min-height: 100px;
+  }
+  #name,
+  #email {
+    min-height: 30px;
+    height: 30px;
+  }
+
+  .submit {
+    font-size: 1.5rem;
+    align-self: flex-end;
+    background-color: $portfolio-cta-background;
+    color: $portfolio-cta-text;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $border-radius;
+    font-weight: $font-weight-bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $portfolio-cta-background-hover;
+    }
+  }
+
+  .response-message {
+    color: $portfolio-primary;
+    margin-top: $spacing-md;
+  }
+}

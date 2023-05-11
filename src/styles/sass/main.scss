@@ -1,0 +1,52 @@
+// Script required to compile to css. Change Directory as needed
+//"compile:sass": "sass sass/main.scss public/stylesheets/style.css -w"
+
+// main.scss
+
+// Abstracts
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/functions';
+@import 'abstracts/media';
+@import 'abstracts/utility';
+
+// Base
+@import 'base/animations';
+@import 'base/typography';
+@import 'base/base';
+
+// Components
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/cards';
+@import 'components/sidebar';
+@import 'components/mobile-nav';
+@import 'components/hero';
+@import 'components/about';
+@import 'components/skills';
+@import 'components/projects';
+@import 'components/contact';
+@import 'components/code';
+@import 'components/blog-card';
+
+// Layout
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/grid';
+
+// Pages
+@import 'pages/home';
+@import 'pages/about';
+@import 'pages/contact';
+@import 'pages/case-study';
+@import 'pages/blog';
+@import 'pages/resume';
+// Themes
+@import 'themes/default';
+@import 'themes/dark-mode';
+
+// Vendors
+
+@import 'vendors/normalize';
+// @import 'vendors/_bootstrap';
+// @import 'vendors/_mantine';

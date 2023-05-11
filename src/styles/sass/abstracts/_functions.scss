@@ -1,0 +1,18 @@
+// _functions.scss
+
+// Convert px to rem
+@function px-to-rem($px-value) {
+  @return $px-value / 16 * 1rem;
+}
+
+// Darken a color by a percentage
+@function darken($color, $percentage) {
+  $adjusted-color: mix(black, $color, $percentage);
+  @return $adjusted-color;
+}
+
+// Lighten a color by a percentage
+@function lighten($color, $percentage) {
+  $adjusted-color: mix(white, $color, $percentage);
+  @return $adjusted-color;
+}

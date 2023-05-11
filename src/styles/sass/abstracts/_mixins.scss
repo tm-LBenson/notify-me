@@ -1,0 +1,106 @@
+/* _mixins.scss */
+
+// Clearfix Mixin
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// Flexbox Mixin
+@mixin flexbox($direction: row, $justify: flex-start, $align: stretch) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// Truncate Text Mixin
+@mixin truncate($width: 100%) {
+  display: inline-block;
+  width: $width;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Transition Mixin
+@mixin transition(
+  $property: all,
+  $duration: 0.3s,
+  $timing-function: ease-in-out,
+  $delay: 0s
+) {
+  transition: $property $duration $timing-function $delay;
+}
+
+// Animation mixin
+@mixin animation(
+  $name,
+  $duration,
+  $timing-function,
+  $iteration-count,
+  $fill-mode
+) {
+  animation-name: $name;
+  animation-duration: $duration;
+  animation-timing-function: $timing-function;
+  animation-iteration-count: $iteration-count;
+  animation-fill-mode: $fill-mode;
+}
+
+/* _mixins.scss */
+
+@mixin button-variant($text-color, $bg-color) {
+  color: $text-color;
+  background-color: $bg-color;
+  border: none;
+  border-radius: $border-radius;
+  padding: $spacing-sm $spacing-md;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover,
+  &:focus {
+    background-color: darken($bg-color, 10%);
+  }
+
+  &:disabled {
+    background-color: $input-disabled-color;
+    cursor: not-allowed;
+  }
+}
+
+// Form Mixin
+@mixin form {
+  // Apply basic styles to form elements
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  textarea,
+  select {
+    font-size: $font-size-base;
+    padding: $spacing-sm;
+    border: 1px solid $input-border-color;
+    border-radius: $border-radius;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+
+    &:focus {
+      border-color: $input-focus-border-color;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  label {
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-sm;
+  }
+}

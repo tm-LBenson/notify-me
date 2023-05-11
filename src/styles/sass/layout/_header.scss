@@ -1,0 +1,107 @@
+/* _header.scss */
+
+// Header container
+.header {
+  width: 100%;
+  background-color: $header-bg-color;
+  padding: $spacing-md 0;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  align-items: center;
+  font-size: 2.1rem;
+  transition: transform 0.3s ease-in-out;
+  padding-right: 4rem;
+  z-index: 5000;
+}
+
+// Add this to your _header.scss
+.header.slide-up {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+// Site logo
+.logo {
+  color: $header-link-color;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  text-decoration: none;
+
+  &:hover {
+    color: $header-link-color;
+  }
+}
+
+// Navigation
+.nav {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding-left: 0;
+  margin-left: $spacing-lg;
+
+  @media (max-width: $nav-breakpoint) {
+    display: none;
+  }
+}
+
+.nav-item {
+  margin-right: $spacing-md;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.nav-link {
+  color: $header-link-color;
+  text-decoration: none;
+  font-weight: $font-weight-semibold;
+  transition: color $transition-duration ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: $header-link-hover-color;
+  }
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+// Mobile navigation
+.hamburger-react {
+  z-index: 5000;
+  display: none;
+  cursor: pointer;
+
+  @media (max-width: $nav-breakpoint) {
+    display: block;
+  }
+}
+
+// Desktop navigation
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: $spacing-md;
+
+  li {
+    display: inline-block;
+  }
+
+  .cta-button {
+    padding: $spacing-xs $spacing-md;
+    border-radius: $border-radius;
+    background-color: $portfolio-cta-background;
+    color: $portfolio-cta-text;
+    transition: background-color $transition-duration ease-in-out;
+
+    &:hover,
+    &:focus {
+      background-color: $portfolio-cta-background-hover;
+    }
+  }
+}

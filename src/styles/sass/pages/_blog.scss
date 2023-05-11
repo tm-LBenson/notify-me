@@ -1,0 +1,141 @@
+// Blog section styles
+.blog-section {
+  max-width: 80vw;
+  margin: auto;
+  padding: 5rem 0;
+  padding-top: 10rem;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  h2 {
+    font-size: 4rem;
+    color: $portfolio-text-light;
+    margin-bottom: 1rem;
+  }
+
+  @include respond(md) {
+    max-width: 95vw;
+  }
+}
+
+.blog-card__wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+// Blog post styles
+.blog-post {
+  h1 {
+    font-size: 4rem;
+  }
+  background-color: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+
+  img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .blog-details {
+    padding: 1.5rem;
+
+    h3 {
+      font-size: 2.2rem;
+      color: $blog-heading;
+      margin: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: $blog-font;
+      color: $blog-text;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .read-more {
+      background-color: $portfolio-secondary;
+      color: $portfolio-cta-text;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: $portfolio-secondary-dark;
+      }
+    }
+  }
+}
+
+.blog-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.blog-page {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+
+  h2 {
+    font-size: $blog-font * 1.5;
+    color: $blog-heading;
+    margin-bottom: 2rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 1.5rem;
+
+      a {
+        font-size: $blog-font;
+        font-weight: bold;
+        color: $portfolio-link;
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: $portfolio-link-hover;
+        }
+      }
+
+      br {
+        display: none;
+      }
+
+      span {
+        font-size: $blog-font * 0.8;
+        color: $blog-text;
+        display: block;
+        margin-top: 0.5rem;
+      }
+    }
+  }
+}
+@include respond(md) {
+  .blog-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@include respond(lg) {
+  .blog-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+}

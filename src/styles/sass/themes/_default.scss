@@ -1,0 +1,41 @@
+:root {
+  --transition-time: 0.5s;
+}
+
+.theme-default,
+.dark-mode {
+  transition: background-color var(--transition-time),
+    color var(--transition-time);
+}
+// _default.scss
+
+// Default theme styles
+.theme-default {
+  background-color: $portfolio-background;
+  color: $portfolio-text;
+
+  // Header styles for light mode
+  .header {
+    background-color: $portfolio-header;
+    color: $portfolio-text-light;
+  }
+
+  // Footer styles for light mode
+  .footer {
+    background-color: $portfolio-sidebar;
+    color: $portfolio-text;
+  }
+  .about-image::after {
+    border-color: $portfolio-secondary-light;
+  }
+
+  .blog-section {
+    h2 {
+      color: $portfolio-text;
+    }
+
+    @include respond(md) {
+      max-width: 95vw;
+    }
+  }
+}

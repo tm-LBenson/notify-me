@@ -1,0 +1,96 @@
+// _sidebar.scss
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  max-width: 20rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $portfolio-sidebar;
+
+  &__logo {
+    font-size: 3rem;
+    padding: 2rem;
+    color: $portfolio-logo;
+  }
+
+  @include respond(md) {
+    width: 25%;
+  }
+
+  @include respond(lg) {
+    width: 20%;
+  }
+
+  &__header {
+    padding: $spacing-sm $spacing-md;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $portfolio-header;
+  }
+
+  &__nav {
+    list-style: none;
+    margin: 0;
+    padding: $spacing-md;
+  }
+
+  &__link {
+    display: block;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    padding: $spacing-xs $spacing-md;
+    transition: background-color $transition-duration ease-in-out;
+    color: $portfolio-link;
+
+    &:hover,
+    &:focus {
+      color: $portfolio-link-hover;
+    }
+
+    &--active {
+      color: $portfolio-link-active;
+    }
+  }
+  &__toggle-button {
+    width: 100%;
+    text-align: left;
+    svg {
+      margin-right: 1rem;
+    }
+  }
+
+  &__toggle-button {
+    cursor: pointer;
+    margin-top: 1rem;
+    &:last-child {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.sidebar__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar__list-item {
+  margin-bottom: 1rem;
+}
+
+.sidebar__list-item-button {
+  width: 100%;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  padding: 0.5rem;
+  cursor: pointer;
+}

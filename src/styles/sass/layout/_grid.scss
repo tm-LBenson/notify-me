@@ -1,0 +1,43 @@
+/* _grid.scss*/
+
+// Grid container
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding-sm;
+
+  @include respond(md) {
+    padding: 0 $container-padding-md;
+  }
+}
+
+// Grid row
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$grid-gutter-width;
+  margin-right: -$grid-gutter-width;
+}
+
+// Grid column
+.col {
+  padding-left: $grid-gutter-width;
+  padding-right: $grid-gutter-width;
+  flex-basis: 100%;
+  max-width: 100%;
+
+  @include respond(sm) {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+
+  @include respond(md) {
+    flex-basis: 33.333%;
+    max-width: 33.333%;
+  }
+
+  @include respond(lg) {
+    flex-basis: 25%;
+    max-width: 25%;
+  }
+}

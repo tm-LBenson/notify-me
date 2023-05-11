@@ -1,0 +1,95 @@
+// _dark-mode.scss
+
+// Dark mode styles
+.dark-mode {
+  background-color: $portfolio-primary-dark;
+  color: $portfolio-text-light;
+
+  // Header styles for dark mode
+  .header {
+    background-color: darken($portfolio-header, 20%);
+    color: $portfolio-text-light;
+  }
+
+  // Footer styles for dark mode
+  .footer {
+    background-color: darken($portfolio-sidebar, 20%);
+    color: $portfolio-text-light;
+  }
+
+  .about-image::after {
+    border-color: $portfolio-secondary-dark;
+  }
+  .cta-buttons {
+    .resume-button {
+      color: $portfolio-text-light;
+    }
+  }
+
+  .project-card,
+  .blog-card {
+    background-color: #333;
+    color: $portfolio-text-light;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .project-content {
+    color: $portfolio-text-light;
+  }
+  // Blog styles for dark mode
+  .blog-section {
+    .blog-post {
+      background-color: $portfolio-primary-dark;
+      .blog-content {
+        p {
+          color: $portfolio-text-light;
+        }
+      }
+    }
+    a {
+      color: $portfolio-link;
+      &:hover {
+        color: $portfolio-link-hover;
+      }
+    }
+  }
+
+  .blog-post {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $portfolio-text-light;
+    }
+    pre {
+      background-color: darken($portfolio-primary-dark, 10%);
+      color: $portfolio-text-light;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+  }
+  .blog-card {
+    ul {
+      li {
+        background-color: $portfolio-primary-dark;
+      }
+    }
+    .blog-card-image {
+      h3 {
+        color: $portfolio-cta-text;
+      }
+    }
+
+    .blog-card-content {
+      .description {
+        color: $portfolio-text-light;
+      }
+
+      .excerpt {
+        color: lighten($portfolio-text-light, 20%);
+      }
+    }
+  }
+}

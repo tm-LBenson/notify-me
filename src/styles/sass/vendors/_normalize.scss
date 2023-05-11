@@ -1,0 +1,25 @@
+/*To use the normalize.scss you need to first run `npm i normalize.css` */
+
+// Import normalize.css
+
+// @import '../node_modules/normalize.css/normalize';
+
+/* Normalize.css is a modern alternative to CSS resets.
+   It provides a set of styles that help browsers render elements consistently
+   and in line with modern web standards. It is a popular choice for projects
+   that aim for cross-browser consistency, and can be used instead of a CSS reset.
+
+   If you're already using a CSS reset, consider removing it before using
+   normalize.css, as they serve similar purposes and it's generally not
+   necessary to use both.
+
+   After running `npm i normalize.css`, uncomment the line above to import
+   normalize.css from your node_modules directory.
+
+   The imported normalize.css styles will then be included in your compiled
+   CSS file, so you don't need to add any additional link tags to your HTML.
+
+   If you want to customize normalize.css or include only specific parts of it,
+   you can copy the necessary parts from the original file and include them
+   in your SCSS project.
+*/

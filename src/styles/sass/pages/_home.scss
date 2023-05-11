@@ -1,0 +1,44 @@
+/* _home.scss */
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: $spacing-lg;
+
+  .feature {
+    flex: 1 0 calc(33.333% - 2 * #{$spacing-lg});
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $spacing-lg;
+    text-align: center;
+
+    h3 {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-bold;
+      margin-bottom: $spacing-md;
+    }
+
+    p {
+      font-size: $font-size-md;
+      line-height: $line-height-base;
+    }
+  }
+}
+
+.content {
+  padding: 20rem;
+  padding-top: 2rem;
+  @include respond(md) {
+    padding: 25%;
+    padding-top: 2rem;
+    /* adjust the padding at your breakpoint */
+  }
+
+  @include respond(lg) {
+    padding: 20%;
+    padding-top: 2rem;
+    /* adjust the padding at your breakpoint */
+  }
+}
