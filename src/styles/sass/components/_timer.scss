@@ -24,3 +24,29 @@
     }
   }
 }
+.timer__time-picker {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-md;
+
+  &__label {
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    color: $dark;
+    margin-right: $spacing-sm;
+  }
+
+  &__input {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-md;
+    color: $dark;
+    border: 1px solid $input-border-color;
+    border-radius: $border-radius;
+    background-color: $white;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+    }
+  }
+}

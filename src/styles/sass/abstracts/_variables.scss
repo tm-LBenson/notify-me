@@ -88,29 +88,4 @@ $active-timer-hover: hsl(354, 80%, 48%);
 $inactive-timer-color: hsl(122, 39%, 49%); // A muted green for inactive timers
 $inactive-timer-hover: hsl(122, 39%, 39%);
 
-.timer__time-picker {
-  display: flex;
-  align-items: center;
-  margin-bottom: $spacing-md;
 
-  &__label {
-    font-size: $font-size-md;
-    font-weight: $font-weight-semibold;
-    color: $dark;
-    margin-right: $spacing-sm;
-  }
-
-  &__input {
-    padding: $spacing-xs $spacing-sm;
-    font-size: $font-size-md;
-    color: $dark;
-    border: 1px solid $input-border-color;
-    border-radius: $border-radius;
-    background-color: $white;
-
-    &:focus {
-      outline: none;
-      border-color: $primary;
-    }
-  }
-}
