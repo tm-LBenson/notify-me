@@ -1,8 +1,10 @@
 import Navbar from '@src/components/Navbar';
 import TimeClock from '@src/components/TimeClock';
 import Timer from '@src/components/Timer';
+import store from '@src/store';
 
 import Head from 'next/head';
+import { Provider } from 'react-redux';
 
 export default function Home() {
   return (
@@ -22,10 +24,12 @@ export default function Home() {
           href="/favicon.ico"
         />
       </Head>
-      <Navbar />
-      <main>
-        <TimeClock />
-      </main>
+      <Provider store={store}>
+        <Navbar />
+        <main>
+          <TimeClock />
+        </main>
+      </Provider>
     </>
   );
 }

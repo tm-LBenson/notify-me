@@ -1,18 +1,22 @@
+import { getAllProjects } from '@src/store/slices/projects';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 const ProjectForm = () => {
   const [projectName, setProjectName] = useState('');
-
+  const dispatch = useDispatch();
   const handleProjectNameChange = (event) => {
     setProjectName(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const projects = JSON.parse(localStorage.getItem('projects')) || [];
+    let projects = JSON.parse(localStorage.getItem('projects')) || [];
     projects.push({ projectName, totalTime: 0 });
     localStorage.setItem('projects', JSON.stringify(projects));
     setProjectName('');
+    projects = JSON.parse(localStorage.getItem('projects'));
+    dispatch(getAllProjects(projects));
   };
 
   return (

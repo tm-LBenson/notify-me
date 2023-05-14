@@ -1,44 +1,65 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ProjectForm from './ProjectForm';
 import TotalTimeOutput from './TotalTimeOutput';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProjects, updateProject } from '@src/store/slices/projects';
+import ProjectList from './ProjectList';
+import { setSelectedProject } from '@src/store/slices/selectedProject';
+import LiveTimer from './LiveTimer';
 
 const TimeClock = () => {
-  const [projects, setProjects] = useState([]);
-  const [selectedProject, setSelectedProject] = useState(null);
   const [timerStarted, setTimerStarted] = useState(false);
-  const [startTime, setStartTime] = useState(null);
+  const [projectStartTimes, setProjectStartTimes] = useState({});
+  const startTime = useRef(null);
+  const dispatch = useDispatch();
+  const { projects } = useSelector((state) => state.projects);
+  const { selectedProject } = useSelector((state) => state.selectedProject);
 
   useEffect(() => {
     const storedProjects = JSON.parse(localStorage.getItem('projects')) || [];
-    setProjects(storedProjects);
+    dispatch(getAllProjects(storedProjects));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleProjectChange = (event) => {
     const project = projects.find((p) => p.projectName === event.target.value);
-    setSelectedProject(project);
+    dispatch(setSelectedProject(project));
   };
 
   const handleStartTime = () => {
-    setStartTime(new Date());
+    setProjectStartTimes((times) => ({
+      ...times,
+      [selectedProject.projectName]: new Date(),
+    }));
     setTimerStarted(true);
   };
 
   const handleEndTime = () => {
     const end = new Date();
-    const elapsedTime = Math.abs(end - startTime) / 1000; // convert to seconds
-    const updatedProjects = projects.map((p) => {
-      if (p.projectName === selectedProject.projectName) {
-        p.totalTime += elapsedTime;
-      }
-      return p;
-    });
-    localStorage.setItem('projects', JSON.stringify(updatedProjects));
+    const elapsedTime =
+      Math.abs(end - projectStartTimes[selectedProject.projectName]) / 1000; // convert to seconds
+
+    const updatedProject = {
+      ...selectedProject,
+      totalTime: selectedProject.totalTime + elapsedTime,
+    };
+
+    dispatch(updateProject(updatedProject));
+    localStorage.setItem('projects', JSON.stringify(projects));
+    dispatch(setSelectedProject(updatedProject));
     setTimerStarted(false);
   };
 
   return (
     <>
       <ProjectForm />
+      {selectedProject && (
+        <LiveTimer
+          timerStarted={timerStarted}
+          startTime={projectStartTimes[selectedProject?.projectName]}
+          totalTime={selectedProject?.totalTime || 0}
+        />
+      )}
       <div className="project-timer">
         <select
           onChange={handleProjectChange}
@@ -72,6 +93,7 @@ const TimeClock = () => {
           <TotalTimeOutput totalTime={selectedProject.totalTime} />
         )}
       </div>
+      <ProjectList />
     </>
   );
 };
