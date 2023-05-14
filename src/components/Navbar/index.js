@@ -9,7 +9,7 @@ export default function Navbar() {
             className="nav-link"
             href="#"
           >
-            Notify-Me
+            Time-Clock
           </a>
         </p>
         <ul>
@@ -18,7 +18,7 @@ export default function Navbar() {
               href="#"
               className="nav-link"
             >
-              Alarm
+              Home
             </a>
           </li>
         </ul>
