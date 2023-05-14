@@ -1,26 +1,31 @@
 import React from 'react';
-
-const formatTime = (totalSeconds) => {
-  if (totalSeconds < 60) {
-    return `${totalSeconds} seconds`;
-  }
-
-  const totalMinutes = totalSeconds / 60;
-  if (totalMinutes < 60) {
-    return `${totalMinutes.toFixed(0)} minutes`;
-  }
-
-  const totalHours = totalMinutes / 60;
-  if (totalHours < 24) {
-    return `${totalHours.toFixed(0)} hours`;
-  }
-
-  const totalDays = totalHours / 24;
-  return `${totalDays.toFixed(0)} days`;
-};
+import { formatTime } from './utils/formatTime';
 
 const TotalTimeOutput = ({ totalTime }) => {
-  return <p>Total time: {formatTime(totalTime)}</p>;
+  const totalTimeFormatted = formatTime(Math.round(totalTime));
+
+  return (
+    <div className="total-time-output">
+      <table>
+        <thead>
+          <tr>
+            <th>Days</th>
+            <th>Hours</th>
+            <th>Minutes</th>
+            <th>Seconds</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{totalTimeFormatted.days}</td>
+            <td>{totalTimeFormatted.hours}</td>
+            <td>{totalTimeFormatted.minutes}</td>
+            <td>{totalTimeFormatted.seconds}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default TotalTimeOutput;
