@@ -20,7 +20,10 @@
 @import 'components/forms';
 @import 'components/cards';
 @import 'components/sidebar';
-@import 'components/timer'; // Layout
+@import 'components/timer';
+@import 'components/time-clock';
+
+// Layout
 @import 'layout/header';
 @import 'layout/footer';
 @import 'layout/grid';

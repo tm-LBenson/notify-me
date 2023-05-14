@@ -6,10 +6,7 @@
   margin-bottom: $spacing-md;
 }
 
-// Use the form mixin for common form element styles
-@include form;
-
-button[type='submit'] {
+button {
   font-size: $font-size-base;
   font-weight: $font-weight-bold;
   color: $white;
@@ -28,6 +25,13 @@ button[type='submit'] {
   &:disabled {
     background-color: $input-disabled-color;
     cursor: not-allowed;
+  }
+}
+
+.clock-out:not(:disabled) {
+  &:hover,
+  &:focus {
+    background-color: $danger-hover;
   }
 }
 
