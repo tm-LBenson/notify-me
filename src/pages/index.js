@@ -1,4 +1,5 @@
 import Navbar from '@src/components/Navbar';
+import TimeClock from '@src/components/TimeClock';
 import Timer from '@src/components/Timer';
 
 import Head from 'next/head';
@@ -23,7 +24,7 @@ export default function Home() {
       </Head>
       <Navbar />
       <main>
-        <Timer />
+        <TimeClock />
       </main>
     </>
   );
