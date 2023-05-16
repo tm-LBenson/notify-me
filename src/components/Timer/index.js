@@ -13,7 +13,6 @@ const Timer = () => {
     const now = new Date();
     const selected = new Date(now.toDateString() + ' ' + selectedTime);
     if (selected < now) {
-      // If the selected time is before the current time, set the notification for tomorrow
       selected.setDate(selected.getDate() + 1);
     }
     setNotification('Your alarm is ringing!', selected);
