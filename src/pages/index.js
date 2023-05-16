@@ -1,4 +1,5 @@
 import Navbar from '@src/components/Navbar';
+import TaskClock from '@src/components/TaskClock/index.js';
 import TimeClock from '@src/components/TimeClock';
 import Timer from '@src/components/Timer';
 import store from '@src/store';
@@ -27,7 +28,7 @@ export default function Home() {
       <Provider store={store}>
         <Navbar />
         <main>
-          <TimeClock />
+          <TaskClock />
         </main>
       </Provider>
     </>
