@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addStudent } from '@src/store/slices/tasks/studentSlice';
-import { setSelectedStudent } from '@src/store/slices/tasks/selectedSlice';
+import { addStudent } from '@src/store/slices/classes/studentSlice';
+import { setSelectedStudent } from '@src/store/slices/classes/selectedSlice';
 
 const NewStudentForm = () => {
   const [studentName, setStudentName] = useState('');

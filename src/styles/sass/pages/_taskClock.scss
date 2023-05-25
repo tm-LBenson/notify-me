@@ -1,0 +1,66 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 1em;
+}
+
+button.btn {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+form {
+  margin-bottom: 2em;
+  &__button {
+    margin-left: 1em;
+  }
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.class-clock {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2em;
+}
+
+.class-list, .day-list, .event-list, .mentoring-session-list, .student-list {
+  li {
+    padding: 1em;
+    margin-bottom: 0.5em;
+    cursor: pointer;
+    border-radius: 4px;
+    &:hover {
+      background-color: #f0f0f0;
+    }
+    &.selected {
+      background-color: #007bff;
+      color: #ffffff;
+    }
+  }
+}

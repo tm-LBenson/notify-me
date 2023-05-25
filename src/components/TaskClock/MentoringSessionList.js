@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedMentoringSession } from '@src/store/slices/tasks/selectedSlice';
+import { setSelectedMentoringSession } from '@src/store/slices/classes/selectedSlice';
 
 const MentoringSessionList = () => {
   const dispatch = useDispatch();

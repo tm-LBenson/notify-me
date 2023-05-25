@@ -1,19 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  addDay,
-  addTimeBlock,
-  addMentoringSession,
-} from '../../store/slices/tasks/tasksSlice';
-import {
-  setSelectedTask,
-  setSelectedDay,
-  setSelectedTimeBlock,
-  setSelectedMentoringSession,
-  setSelectedStudent,
-} from '../../store/slices/tasks/selectedSlice';
-import TaskForm from './TaskForm';
-import TaskList from './TaskList';
+
+import ClassForm from './ClassForm';
+import ClassList from './ClassList';
 import DayForm from './DayForm';
 import DayList from './DayList';
 import TimeBlockForm from './TimeBlockForm';
@@ -25,8 +14,8 @@ import NewStudentForm from './NewStudentForm';
 import StudentView from './StudentView';
 const TaskClock = () => {
   const {
-    handleAddTask,
-    handleSelectTask,
+    handleAddClass,
+    handleSelectClass,
     handleAddDay,
     handleSelectDay,
     handleAddTimeBlock,
@@ -35,27 +24,27 @@ const TaskClock = () => {
     handleSelectMentoringSession,
   } = useHandlers();
   const dispatch = useDispatch();
-  const { tasks } = useSelector((state) => state.tasks);
+  const { classes } = useSelector((state) => state.classes);
   const { selectedStudent } = useSelector((state) => state.selected);
   const {
-    selectedTask,
+    selectedClass,
     selectedDay,
     selectedTimeBlock,
     selectedMentoringSession,
   } = useSelector((state) => state.selected);
 
   return (
-    <div className="task-clock">
-      <TaskForm onAddTask={handleAddTask} />
-      <TaskList
-        tasks={tasks}
-        onSelectTask={handleSelectTask}
+    <div className="class-clock">
+      <ClassForm onAddClass={handleAddClass} />
+      <ClassList
+        classes={classes}
+        onSelectClass={handleSelectClass}
       />
-      {selectedTask && (
+      {selectedClass && (
         <>
           <DayForm onAddDay={handleAddDay} />
           <DayList
-            days={selectedTask.days}
+            days={selectedClass.days}
             onSelectDay={handleSelectDay}
           />
           {selectedDay && (

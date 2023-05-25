@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addEvent } from '@src/store/slices/tasks/tasksSlice';
+import { addEvent } from '@src/store/slices/classes/classesSlice';
 
 const TimeBlockForm = () => {
   const [eventType, setEventType] = useState('Start shift');
   const [notes, setNotes] = useState('');
   const dispatch = useDispatch();
-  const { selectedDay, selectedTask } = useSelector((state) => state.selected);
+  const { selectedDay, selectedClass } = useSelector((state) => state.selected);
 
   const handleAddEvent = () => {
     const newEvent = {
@@ -14,7 +14,7 @@ const TimeBlockForm = () => {
       time: new Date().toISOString(),
       notes,
     };
-    dispatch(addEvent({ dayId: selectedDay.id, newEvent, taskName: selectedTask.taskName }));
+    dispatch(addEvent({ dayId: selectedDay.id, newEvent, className: selectedClass.className }));
     setNotes('');
   };
 

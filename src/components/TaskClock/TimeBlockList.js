@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedEvent } from '@src/store/slices/tasks/selectedSlice';
+import { setSelectedEvent } from '@src/store/slices/classes/selectedSlice';
 
 const EventList = () => {
   const dispatch = useDispatch();

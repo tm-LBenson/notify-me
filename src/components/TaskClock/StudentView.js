@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedStudent } from '@src/store/slices/tasks/selectedSlice';
+import { setSelectedStudent } from '@src/store/slices/classes/selectedSlice';
 
 const StudentView = () => {
   const dispatch = useDispatch();

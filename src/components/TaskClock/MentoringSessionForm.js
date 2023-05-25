@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   addEvent,
   addMentoringSession,
-} from '@src/store/slices/tasks/tasksSlice';
+} from '@src/store/slices/classes/classesSlice';
 
 const MentoringSessionForm = () => {
   const [eventType, setEventType] = useState('Start Mentoring Session');
@@ -15,11 +15,11 @@ const MentoringSessionForm = () => {
   const [manualInput, setManualInput] = useState(false);
   const [addBreak, setAddBreak] = useState(false);
   const dispatch = useDispatch();
-  const { selectedTask, selectedMentoringSession, selectedDay } = useSelector(
+  const { selectedClass, selectedMentoringSession, selectedDay } = useSelector(
     (state) => state.selected,
   );
   const mentoringSessions = useSelector((state) =>
-    state.tasks.tasks.flatMap((task) =>
+    state.classes.classes.flatMap((task) =>
       task.days.flatMap((day) => day.mentoringSessions),
     ),
   );
@@ -55,7 +55,7 @@ const MentoringSessionForm = () => {
         addEvent({
           dayId: selectedDay.id,
           newEvent: mentoringSessionEvent,
-          taskName: selectedTask.taskName,
+          className: selectedClass.className,
         }),
       );
     }

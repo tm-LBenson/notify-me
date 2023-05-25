@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDay } from '@src/store/slices/tasks/tasksSlice';
-import { setSelectedTask } from '@src/store/slices/tasks/selectedSlice';
+import { addDay } from '@src/store/slices/classes/classesSlice';
+import { setSelectedClass } from '@src/store/slices/classes/selectedSlice';
 
 const DayForm = () => {
   const [dayName, setDayName] = useState(
     new Date().toLocaleDateString('en-US'),
   );
   const dispatch = useDispatch();
-  const { selectedTask } = useSelector((state) => state.selected);
+  const { selectedClass } = useSelector((state) => state.selected);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -19,7 +19,7 @@ const DayForm = () => {
       events: [],
       mentoringSessions: [],
     };
-    dispatch(addDay({ taskName: selectedTask.taskName, newDay }));
+    dispatch(addDay({ className: selectedClass.className, newDay }));
   };
 
   const handleChange = (event) => {

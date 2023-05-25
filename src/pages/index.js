@@ -26,7 +26,7 @@ export default function Home() {
         />
       </Head>
       <Provider store={store}>
-        <Navbar />
+<Navbar />
         <main>
           <TaskClock />
         </main>

@@ -1,43 +1,43 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTask } from '@src/store/slices/tasks/tasksSlice';
+import { addClass } from '@src/store/slices/classes/classesSlice';
 
-const TaskForm = () => {
-  const [taskName, setTaskName] = useState('');
+const ClassForm = () => {
+  const [className, setClassName] = useState('');
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (taskName.trim() !== '') {
-      const newTask = {
+    if (className.trim() !== '') {
+      const newClass = {
         id: crypto.randomUUID(),
-        taskName,
+        className,
         days: [],
       };
-      dispatch(addTask(newTask));
-      setTaskName('');
+      dispatch(addClass(newClass));
+      setClassName('');
     }
   };
 
   const handleChange = (event) => {
-    setTaskName(event.target.value);
+    setClassName(event.target.value);
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="task-form"
+      className="class-form"
     >
       <input
         type="text"
-        value="springhill-code-102n1"
+
         onChange={handleChange}
         placeholder="springhill-code-102n1"
         required
       />
       <button
         type="submit"
-        className="btn task-form__button"
+        className="btn class-form__button"
       >
         Add Class
       </button>
@@ -45,4 +45,4 @@ const TaskForm = () => {
   );
 };
 
-export default TaskForm;
+export default ClassForm;
