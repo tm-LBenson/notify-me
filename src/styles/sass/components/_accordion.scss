@@ -1,0 +1,93 @@
+.accordion {
+  width: 500px;
+  background-color: #f0f0f0;
+}
+
+.selected-header {
+  background-color: lightblue;
+}
+
+.item {
+  &:hover {
+    cursor: pointer;
+    background-color: lightgray;
+  }
+  &.selected {
+    background-color: lightblue;
+  }
+}
+
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  max-height: 0;
+  overflow-y: auto;
+  &.open {
+    max-height: 15em;
+  }
+
+  .selected {
+    background-color: #007bff;
+    color: #ffffff;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 0.5em;
+    border-radius: 4px;
+    padding: 1em;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #c9c7c7;
+    }
+  }
+
+  form {
+    display: flex;
+    align-items: center;
+
+    input {
+      margin-right: 0.5em;
+    }
+  }
+}
+
+.clickable-heading {
+  cursor: pointer;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.clickable-heading:hover {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.btn.cancel {
+  background-color: rgb(209, 64, 64);
+}
+
+.btn.new-button {
+  font-size: 1.5rem;
+  color: inherit;
+  text-align: center;
+  width: 120px;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+}
+
+label[for='manualInput'] {
+  font-size: 1.2rem;
+  display: inline-block;
+  margin-right: 1rem;
+}
+

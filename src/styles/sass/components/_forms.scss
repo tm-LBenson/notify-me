@@ -46,3 +46,58 @@ button {
   color: $success-color;
   margin-top: $spacing-xs;
 }
+/* Global styles */
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+textarea,
+select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  color: white;
+  background-color: #007bff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.btn.timeBlock-form__button {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+
+label {
+  margin-bottom: 5px;
+  display: block;
+  font-weight: bold;
+}
+
+.new-button-container {
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+  }
+}
+.long-button {
+  width: 250px !important;
+}
