@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addDay, addEvent } from './tasksSlice';
+import { addDay, addEvent } from './classesSlice';
 
 const initialState = {
-  selectedTask: null,
+  selectedClass: null,
   selectedDay: null,
   selectedEvent: null,
   selectedMentoringSession: null,
@@ -13,8 +13,8 @@ const selectedSlice = createSlice({
   name: 'selected',
   initialState,
   reducers: {
-    setSelectedTask: (state, action) => {
-      state.selectedTask = action.payload;
+    setSelectedClass: (state, action) => {
+      state.selectedClass = action.payload;
       state.selectedDay = null;
       state.selectedEvent = null;
       state.selectedMentoringSession = null;
@@ -39,10 +39,10 @@ const selectedSlice = createSlice({
     builder
       .addCase(addDay, (state, action) => {
         if (
-          state.selectedTask &&
-          state.selectedTask.taskName === action.payload.taskName
+          state.selectedClass &&
+          state.selectedClass.className === action.payload.className
         ) {
-          state.selectedTask.days.push(action.payload.newDay);
+          state.selectedClass.days.push(action.payload.newDay);
           state.selectedDay = action.payload.newDay;
         }
       })
@@ -59,7 +59,7 @@ const selectedSlice = createSlice({
 });
 
 export const {
-  setSelectedTask,
+  setSelectedClass,
   setSelectedDay,
   setSelectedEvent,
   setSelectedMentoringSession,

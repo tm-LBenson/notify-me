@@ -1,35 +1,35 @@
 import { useDispatch } from 'react-redux';
 import {
   addDay,
-  addTask,
-  removeTask,
-  updateTask,
+  addClass,
+  removeClass,
+  updateClass,
   addTimeBlock,
   removeTimeBlock,
   updateTimeBlock,
   addMentoringSession,
   removeMentoringSession,
   updateMentoringSession,
-  selectTask,
+  selectClass,
   selectDay,
   selectTimeBlock,
   selectMentoringSession,
-} from '../../store/slices/tasks/tasksSlice';
+} from '../../store/slices/classes/classesSlice';
 
 const useHandlers = () => {
   const dispatch = useDispatch();
 
-  const handleAddTask = (taskName) => {
-    const newTask = {
+  const handleAddClass = (className) => {
+    const newClass = {
       id: crypto.randomUUID(),
-      taskName,
+      className,
       days: [],
     };
-    dispatch(addTask(newTask));
+    dispatch(addClass(newClass));
   };
 
-  const handleSelectTask = (taskId) => {
-    dispatch(selectTask(taskId));
+  const handleSelectClass = (classId) => {
+    dispatch(selectClass(classId));
   };
 
   const handleAddDay = (dayName) => {
@@ -39,7 +39,7 @@ const useHandlers = () => {
       timeBlocks: [],
       mentoringSessions: [],
     };
-    dispatch(addDay({ taskId: selectedTaskId, newDay }));
+    dispatch(addDay({ classId: selectedClassId, newDay }));
   };
 
   const handleSelectDay = (dayId) => {
@@ -74,8 +74,8 @@ const useHandlers = () => {
   };
 
   return {
-    handleAddTask,
-    handleSelectTask,
+    handleAddClass,
+    handleSelectClass,
     handleAddDay,
     handleSelectDay,
     handleAddTimeBlock,

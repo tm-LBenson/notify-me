@@ -22,7 +22,8 @@
 @import 'components/sidebar';
 @import 'components/timer';
 @import 'components/time-clock';
-
+@import 'components/auth';
+@import 'components/accordion';
 // Layout
 @import 'layout/header';
 @import 'layout/footer';
@@ -32,6 +33,7 @@
 @import 'pages/home';
 @import 'pages/about';
 @import 'pages/contact';
+@import 'pages/taskClock';
 
 // Themes
 @import 'themes/default';

@@ -1,35 +1,66 @@
-.navbar {
-  li {
-    list-style: none;
-  }
+// _header.scss
 
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $spacing-md $spacing-lg;
-  background-color: $dark;
-  box-shadow: 0 2px 4px $dark-hover;
+  padding: 20px;
+  background-color: #f8f9fa;
 
-  &__logo {
-    font-size: $font-size-lg;
-    font-weight: $font-weight-bold;
-    color: $white;
-  }
-
-  &__link {
-    color: $white;
-    font-size: $font-size-md;
+  a {
+    color: #007bff;
     text-decoration: none;
-    margin-left: $spacing-md;
-    transition: color $transition-duration;
 
     &:hover {
-      color: $primary;
+      color: #0056b3;
     }
   }
 
-  &__items {
+  .hamburger-menu {
+    display: none; // hidden by default
+  }
+
+  .nav {
     display: flex;
     list-style: none;
+
+    &.open {
+      display: block;
+    }
+
+    .link {
+      margin: 0 10px;
+    }
+  }
+
+  .btnCont {
+    .button {
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    .hamburger-menu {
+      display: block; // show hamburger menu on small screens
+    }
+
+    .nav {
+      display: none; // hide navigation on small screens
+
+      &.open {
+        display: flex; // show navigation when hamburger menu is open
+      }
+    }
   }
 }
