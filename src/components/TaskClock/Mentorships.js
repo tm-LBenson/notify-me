@@ -29,24 +29,12 @@ const Mentorships = () => {
     (state) => state.selected,
   );
   const { students } = useSelector((state) => state.students);
-  const mentoringSessions = useSelector((state) =>
-    state.classes.classes.flatMap((task) =>
-      task.days.flatMap((day) => day.mentoringSessions),
-    ),
-  );
 
   const handleAddStudentToggle = () => {
     setIsAddingStudent(!isAddingStudent);
     if (isAddingStudent) {
       setStudentName('');
     }
-  };
-
-  const handleSelectStudent = (event) => {
-    const selectedSession = mentoringSessions.find(
-      (session) => session.studentName === studentName,
-    );
-    dispatch(setSelectedMentoringSession(selectedSession));
   };
 
   const handleStudentSelect = (student) => {
@@ -198,7 +186,7 @@ const Mentorships = () => {
                   )}
                 </>
               )}
-              <div>
+              <div className="manual-input">
                 <label htmlFor="manualInput">
                   Manually Enter Session Data:
                 </label>

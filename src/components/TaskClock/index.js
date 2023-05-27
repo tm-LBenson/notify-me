@@ -5,22 +5,15 @@ import ClassList from './ClassList';
 
 import DayList from './DayList';
 
-import TimeBlockList from './TimeBlockList';
+import TimeBlockList from './EventAccordion';
 
 import useHandlers from './handlers';
 import Mentorships from './Mentorships';
 
 const TaskClock = () => {
-  const {
-    handleAddDay,
-    handleSelectDay,
-    handleAddTimeBlock,
-    handleSelectTimeBlock,
-    handleAddMentoringSession,
-    handleSelectMentoringSession,
-  } = useHandlers();
+  const { handleSelectDay, handleAddTimeBlock, handleSelectTimeBlock } =
+    useHandlers();
 
-  const { selectedStudent } = useSelector((state) => state.selected);
   const { selectedClass, selectedDay } = useSelector((state) => state.selected);
 
   return (

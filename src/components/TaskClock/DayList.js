@@ -31,7 +31,8 @@ const DayAccordion = () => {
       events: [],
       mentoringSessions: [],
     };
-    dispatch(addDay({ className: selectedClass.className, newDay }));
+    dispatch(addDay({ class: selectedClass, newDay }));
+
     dispatch(setSelectedDay(newDay));
     setDayName('');
     setIsFormOpen(false);

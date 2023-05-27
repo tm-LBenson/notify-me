@@ -101,3 +101,9 @@ label {
 .long-button {
   width: 250px !important;
 }
+
+.manual-input {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem;
+}
