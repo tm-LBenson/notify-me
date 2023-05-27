@@ -126,7 +126,10 @@ const Mentorships = () => {
             {students.map((student, i) => (
               <div
                 key={i}
-                onClick={() => handleStudentSelect(student)}
+                onClick={() => {
+                  setIsAddingStudent(false);
+                  handleStudentSelect(student);
+                }}
                 className={`item ${
                   selectedStudent && selectedStudent.name === student.name
                     ? 'selected'
@@ -137,15 +140,14 @@ const Mentorships = () => {
               </div>
             ))}
           </div>
-          {!isAddingMentoringSession &&
-            selectedStudent&& (
-              <button
-                className={`btn new-button ${isAddingStudent ? 'cancel' : ''}`}
-                onClick={handleAddStudentToggle}
-              >
-                {isAddingStudent ? 'Cancel' : 'Add Student'}
-              </button>,
-            )}
+          {!isAddingMentoringSession && (
+            <button
+              className={`btn new-button ${isAddingStudent ? 'cancel' : ''}`}
+              onClick={handleAddStudentToggle}
+            >
+              {isAddingStudent ? 'Cancel' : 'Add Student'}
+            </button>
+          )}
           {isAddingStudent && (
             <form onSubmit={handleNewStudentSubmit}>
               <input
@@ -157,7 +159,7 @@ const Mentorships = () => {
               <button type="submit">Submit</button>
             </form>
           )}
-          {!isAddingStudent && (
+          {!isAddingStudent && selectedStudent && (
             <button
               className={`btn new-button long-button`}
               onClick={handleAddMentoringSessionToggle}
