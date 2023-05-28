@@ -1,3 +1,4 @@
+
 .horizontal-timeline {
   overflow-x: auto;
   white-space: nowrap;
@@ -44,7 +45,10 @@
   }
 
   .horizontal-timeline .items .items-list .event-date {
-    top: -40px;
+    margin-top: 25px;
+    top: -15px;
+    z-index: 99;
+    font-size: 1.3rem;
   }
 }
 
