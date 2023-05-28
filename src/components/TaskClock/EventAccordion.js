@@ -1,20 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  addEvent,
-  setSelectedEvent,
-} from '@src/store/slices/classes/classesSlice';
+import { addEvent } from '@src/store/slices/classes/classesSlice';
 
 const EventAccordion = ({ onAddTimeBlock }) => {
   const [eventType, setEventType] = useState('Start shift');
   const [notes, setNotes] = useState('');
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
-  const [breakStartTime, setBreakStartTime] = useState('');
-  const [breakEndTime, setBreakEndTime] = useState('');
-  const [manualInput, setManualInput] = useState(false);
+  const [timestamp, setTimestamp] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-
+  const [manualInput, setManualInput] = useState(false);
   const dispatch = useDispatch();
   const { selectedDay, selectedClass } = useSelector((state) => state.selected);
 
@@ -22,37 +15,25 @@ const EventAccordion = ({ onAddTimeBlock }) => {
     event.preventDefault();
     const newEvent = {
       type: eventType,
-      startTime: manualInput ? startTime : new Date().toISOString(),
-      endTime: manualInput ? endTime : '',
-      breakStartTime: manualInput ? breakStartTime : '',
-      breakEndTime: manualInput ? breakEndTime : '',
+      timestamp: timestamp || new Date().toISOString(),
       notes,
     };
+
     if (selectedDay) {
+   
       dispatch(
         addEvent({
-          dayId: selectedDay.id,
+          dayFirebaseId: selectedDay.firebaseId,
           newEvent,
           className: selectedClass.className,
         }),
       );
       onAddTimeBlock && onAddTimeBlock(newEvent);
     }
+
     setNotes('');
-    setStartTime('');
-    setEndTime('');
-    setBreakStartTime('');
-    setBreakEndTime('');
-    setIsOpen(false);
+    setTimestamp('');
   };
-
-  const handleEventSelect = (event) => {
-    dispatch(setSelectedEvent(event));
-  };
-
-  const sortedEvents = selectedDay
-    ? [...selectedDay.events].sort((a, b) => a.time - b.time)
-    : [];
 
   return (
     <div className="accordion">

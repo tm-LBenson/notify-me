@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ClassList from './ClassList';
 
@@ -7,15 +7,22 @@ import DayList from './DayList';
 
 import TimeBlockList from './EventAccordion';
 
-import useHandlers from './handlers';
 import Mentorships from './Mentorships';
+import { addEvent } from '@src/store/slices/classes/classesSlice';
 
 const TaskClock = () => {
-  const { handleSelectDay, handleAddTimeBlock, handleSelectTimeBlock } =
-    useHandlers();
-
+  const dispatch = useDispatch();
   const { selectedClass, selectedDay } = useSelector((state) => state.selected);
 
+  const handleSelectTimeBlock = (timeBlockId) => {
+    dispatch(selectTimeBlock(timeBlockId));
+  };
+  const handleAddTimeBlock = (data) => {
+    const newTimeBlock = {
+      data,
+    };
+    dispatch(addEvent({ day: selectedDay, newTimeBlock }));
+  };
   return (
     <div className="class-clock">
       <ClassList />
@@ -23,7 +30,7 @@ const TaskClock = () => {
         <>
           <DayList
             days={selectedClass.days}
-            onSelectDay={handleSelectDay}
+            onSelectDay={(item) => dispatch(selectDay(item))}
           />
           {selectedDay && (
             <>

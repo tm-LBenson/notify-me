@@ -10,6 +10,8 @@ import getAllClassesMiddleware from './middleware/getAllClassesMiddleware';
 import addClassMiddleware from './middleware/addClassMiddleware';
 import addDayMiddleware from './middleware/addDayMiddleware';
 import getAllDaysMiddleware from './middleware/getAllDaysMiddleware';
+import addEventMiddleware from './middleware/addEventMiddleware';
+import getAllEventsMiddleware from './middleware/getAllEventsMiddleware';
 
 const store = configureStore({
   reducer: {
@@ -26,6 +28,8 @@ const store = configureStore({
     addClassMiddleware,
     getAllDaysMiddleware,
     addDayMiddleware,
+    addEventMiddleware,
+    getAllEventsMiddleware,
   ],
 });
 

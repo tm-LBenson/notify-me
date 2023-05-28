@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDay } from '@src/store/slices/classes/classesSlice';
+import { addDay, getAllDays } from '@src/store/slices/classes/classesSlice';
 import { setSelectedDay } from '@src/store/slices/classes/selectedSlice';
 
 const DayAccordion = () => {
@@ -9,27 +9,16 @@ const DayAccordion = () => {
   const [isOpen, setIsOpen] = useState(true);
   const dispatch = useDispatch();
   const { selectedClass, selectedDay } = useSelector((state) => state.selected);
+  const { days } = useSelector((state) => state.classes);
 
-  const handleDaySelect = (day) => {
-    dispatch(setSelectedDay(day));
-    setIsOpen(false);
-  };
-
-  const handleHeadingClick = () => {
-    setIsOpen((prevIsOpen) => !prevIsOpen);
-  };
-
-  const handleNewButtonClick = () => {
-    setIsFormOpen((prevIsFormOpen) => !prevIsFormOpen);
-  };
+  useEffect(() => {
+    dispatch(getAllDays());
+  }, [dispatch]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const newDay = {
-      id: crypto.randomUUID(),
       dayName,
-      events: [],
-      mentoringSessions: [],
     };
     dispatch(addDay({ class: selectedClass, newDay }));
 
@@ -39,14 +28,17 @@ const DayAccordion = () => {
     setIsOpen(false);
   };
 
-  const handleChange = (event) => {
-    setDayName(event.target.value);
-  };
+  const handleChange = (event) => {};
+  const filteredDays = days.filter((day) => {
+    return day.classFirebaseId === selectedClass.firebaseId;
+  });
 
   return (
     <div className="accordion">
       <h2
-        onClick={handleHeadingClick}
+        onClick={() => {
+          setIsOpen((prevIsOpen) => !prevIsOpen);
+        }}
         className={`clickable-heading ${
           selectedDay && !isOpen ? '' : 'selected-header'
         }`}
@@ -56,11 +48,14 @@ const DayAccordion = () => {
 
       {isOpen && (
         <div>
-          {selectedClass?.days?.length > 0 ? (
-            selectedClass.days.map((day) => (
+          {filteredDays?.length > 0 ? (
+            filteredDays.map((day) => (
               <div
-                onClick={() => handleDaySelect(day)}
-                key={day.id}
+                onClick={() => {
+                  dispatch(setSelectedDay(day));
+                  setIsOpen(false);
+                }}
+                key={day.firebaseId}
                 className={`item ${
                   selectedDay && selectedDay.id === day.id ? 'selected' : ''
                 }`}
@@ -73,7 +68,7 @@ const DayAccordion = () => {
           )}
           <div className="button-container">
             <button
-              onClick={handleNewButtonClick}
+              onClick={() => setIsFormOpen((prevIsFormOpen) => !prevIsFormOpen)}
               className={`btn new-button ${isFormOpen ? 'cancel' : ''}`}
             >
               {isFormOpen ? 'Cancel' : 'Add Day'}
@@ -84,7 +79,7 @@ const DayAccordion = () => {
                 <input
                   type="date"
                   value={dayName}
-                  onChange={handleChange}
+                  onChange={(event) => setDayName(event.target.value)}
                   placeholder={new Date().toLocaleDateString('en-US')}
                   required
                 />

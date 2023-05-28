@@ -8,7 +8,7 @@ const getAllClassesMiddleware = (storeAPI) => (next) => async (action) => {
       const classCollection = collection(db, 'classes');
       const classSnapshot = await getDocs(classCollection);
       const classes = classSnapshot.docs.map((doc) => ({
-        id: doc.id,
+        firebaseId: doc.id,
         ...doc.data(),
       }));
 

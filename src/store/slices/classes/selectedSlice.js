@@ -35,27 +35,6 @@ const selectedSlice = createSlice({
       state.selectedStudent = action.payload;
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(addDay, (state, action) => {
-        if (
-          state.selectedClass &&
-          state.selectedClass.className === action.payload.className
-        ) {
-          state.selectedClass.days.push(action.payload.newDay);
-          state.selectedDay = action.payload.newDay;
-        }
-      })
-      .addCase(addEvent, (state, action) => {
-        if (
-          state.selectedDay &&
-          state.selectedDay.id === action.payload.dayId
-        ) {
-          state.selectedDay.events.push(action.payload.newEvent);
-          state.selectedEvent = action.payload.newEvent;
-        }
-      });
-  },
 });
 
 export const {

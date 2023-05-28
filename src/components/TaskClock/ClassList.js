@@ -69,13 +69,14 @@ const ClassList = () => {
           {classes.map((classItem) => (
             <div
               onClick={() => handleClassSelect(classItem)}
-              key={classItem.id}
+              key={classItem}
               className={`item ${
                 selectedClass && selectedClass.id === classItem.id
                   ? 'selected'
                   : ''
               }`}
             >
+              {console.log()}
               {classItem.className}
             </div>
           ))}

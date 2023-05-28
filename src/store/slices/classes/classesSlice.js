@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   classes: [],
   days: [],
+  events: [],
 };
 
 const classesSlice = createSlice({
@@ -30,14 +31,12 @@ const classesSlice = createSlice({
         classItem.days.push(action.payload.newDay.id);
       }
     },
-    addEvent: (state, action) => {
-      const dayItem = state.days.find(
-        (dayItem) => dayItem.id === action.payload.dayId,
-      );
+    getAllEvents: (state, action) => {
+      state.events = action.payload;
+    },
 
-      if (dayItem) {
-        dayItem.events.push(action.payload.newEvent);
-      }
+    addEvent: (state, action) => {
+      state.events.push(action.payload.newEvent);
     },
 
     addMentoringSession: (state, action) => {
@@ -62,6 +61,7 @@ export const {
   setFirebaseId,
   addEvent,
   addMentoringSession,
+  getAllDays,
   getAllClasses,
 } = classesSlice.actions;
 
