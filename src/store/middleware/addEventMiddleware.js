@@ -13,8 +13,7 @@ import {
 const addEventMiddleware = (storeAPI) => (next) => async (action) => {
   if (action.type === 'classes/addEvent') {
     try {
-      if (action.payload?.day) {
-        console.log(action.payload.day);
+      if (action.payload?.day?.firebaseId) {
         const eventsCollection = collection(db, 'events');
         const dayQuery = query(
           eventsCollection,
