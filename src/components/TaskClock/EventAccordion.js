@@ -1,18 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addEvent } from '@src/store/slices/classes/classesSlice';
 
 const EventAccordion = ({ onAddTimeBlock }) => {
   const [eventType, setEventType] = useState('Start shift');
   const [notes, setNotes] = useState('');
-  const [timestamp, setTimestamp] = useState('');
+  const [timestamp, setTimestamp] = useState(
+    new Date().toISOString().substring(0, 16),
+  );
   const [isOpen, setIsOpen] = useState(false);
-  const [manualInput, setManualInput] = useState(false);
+  const [eventOptions, setEventOptions] = useState([]);
   const dispatch = useDispatch();
   const { selectedDay, selectedClass } = useSelector((state) => state.selected);
+  const { events } = useSelector((state) => state.classes);
+
+  useEffect(() => {
+    const filteredEvents = events.filter((event) => {
+      if (selectedDay) {
+        return event.dayFirebaseId === selectedDay.firebaseId;
+      }
+    });
+
+    const sortedEvents = [...(filteredEvents[0]?.events || [])].sort((a, b) => {
+      return a.timestamp.localeCompare(b.timestamp);
+    });
+
+    const lastEvent = sortedEvents[sortedEvents.length - 1];
+
+    let options = [];
+    if (!lastEvent || lastEvent.type === 'End shift') {
+      options = ['Start shift'];
+    } else if (lastEvent.type === 'Start shift') {
+      options = ['Start break', 'End shift'];
+    } else if (lastEvent.type === 'Start break') {
+      options = ['End break'];
+    } else if (lastEvent.type === 'End break') {
+      options = ['Start break', 'End shift'];
+    }
+    setEventOptions(options);
+    setEventType(options[0]);
+  }, [selectedDay, events]);
 
   const handleAddEvent = (event) => {
     event.preventDefault();
+
+    if (!eventOptions.includes(eventType)) {
+      alert('Invalid event sequence');
+      return;
+    }
+
     const newEvent = {
       type: eventType,
       timestamp: timestamp || new Date().toISOString(),
@@ -20,7 +56,6 @@ const EventAccordion = ({ onAddTimeBlock }) => {
     };
 
     if (selectedDay) {
-   
       dispatch(
         addEvent({
           dayFirebaseId: selectedDay.firebaseId,
@@ -32,7 +67,8 @@ const EventAccordion = ({ onAddTimeBlock }) => {
     }
 
     setNotes('');
-    setTimestamp('');
+    setTimestamp(new Date().toISOString().substring(0, 16));
+    setEventType(eventOptions[0]);
   };
 
   return (
@@ -46,75 +82,39 @@ const EventAccordion = ({ onAddTimeBlock }) => {
 
       {isOpen && (
         <form onSubmit={handleAddEvent}>
-          {!manualInput && (
-            <>
-              <label htmlFor="eventType">Event Type</label>
-              <select
-                id="eventType"
-                value={eventType}
-                onChange={(event) => setEventType(event.target.value)}
+          <label htmlFor="eventType">Event Type</label>
+          <select
+            id="eventType"
+            value={eventType}
+            onChange={(event) => setEventType(event.target.value)}
+          >
+            {eventOptions.map((option, index) => (
+              <option
+                key={index}
+                value={option}
               >
-                <option value="Start shift">Start Shift</option>
-                <option value="End shift">End Shift</option>
-                <option value="Start break">Start Break</option>
-                <option value="End break">End Break</option>
-              </select>
-            </>
-          )}
-          <div className="manual-input">
-            <label htmlFor="manualInput">Manually Enter Event Time:</label>
+                {option}
+              </option>
+            ))}
+          </select>
+
+          <div>
+            <label htmlFor="eventTime">Event Time:</label>
             <input
-              type="checkbox"
-              id="manualInput"
-              checked={manualInput}
-              onChange={(event) => setManualInput(event.target.checked)}
+              type="time"
+              id="eventTime"
+              value={timestamp}
+              onChange={(e) => setTimestamp(e.target.value)}
             />
           </div>
-          {manualInput && (
-            <div>
-              <label htmlFor="startTime">Start Time:</label>
-              <input
-                type="text"
-                id="startTime"
-                placeholder="Enter Start Time"
-                value={startTime}
-                onChange={(e) => setStartTime(e.target.value)}
-              />
 
-              <label htmlFor="endTime">End Time:</label>
-              <input
-                type="text"
-                id="endTime"
-                placeholder="Enter End Time"
-                value={endTime}
-                onChange={(e) => setEndTime(e.target.value)}
-              />
-
-              <label htmlFor="breakStartTime">Break Start Time:</label>
-              <input
-                type="text"
-                id="breakStartTime"
-                placeholder="Enter Break Start Time"
-                value={breakStartTime}
-                onChange={(e) => setBreakStartTime(e.target.value)}
-              />
-
-              <label htmlFor="breakEndTime">Break End Time:</label>
-              <input
-                type="text"
-                id="breakEndTime"
-                placeholder="Enter Break End Time"
-                value={breakEndTime}
-                onChange={(e) => setBreakEndTime(e.target.value)}
-              />
-            </div>
-          )}
           <label htmlFor="notes">Notes:</label>
           <textarea
             id="notes"
             value={notes}
             onChange={(event) => setNotes(event.target.value)}
           />
+
           <button
             type="submit"
             className="btn timeBlock-form__button"

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDay, getAllDays } from '@src/store/slices/classes/classesSlice';
+import {
+  addDay,
+  getAllDays,
+  getAllEvents,
+} from '@src/store/slices/classes/classesSlice';
 import { setSelectedDay } from '@src/store/slices/classes/selectedSlice';
 
 const DayAccordion = () => {
@@ -15,6 +19,12 @@ const DayAccordion = () => {
     dispatch(getAllDays());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (selectedDay) {
+      dispatch(getAllEvents());
+    }
+  }, [dispatch, selectedDay]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const newDay = {
@@ -28,7 +38,6 @@ const DayAccordion = () => {
     setIsOpen(false);
   };
 
-  const handleChange = (event) => {};
   const filteredDays = days.filter((day) => {
     return day.classFirebaseId === selectedClass.firebaseId;
   });

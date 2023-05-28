@@ -69,9 +69,10 @@ const ClassList = () => {
           {classes.map((classItem) => (
             <div
               onClick={() => handleClassSelect(classItem)}
-              key={classItem}
+              key={classItem.firebaseId}
               className={`item ${
-                selectedClass && selectedClass.id === classItem.id
+                selectedClass &&
+                selectedClass.firebaseId === classItem.firebaseId
                   ? 'selected'
                   : ''
               }`}

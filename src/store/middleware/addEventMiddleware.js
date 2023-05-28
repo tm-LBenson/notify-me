@@ -7,12 +7,14 @@ import {
   query,
   updateDoc,
   where,
+  doc,
 } from 'firebase/firestore';
 
 const addEventMiddleware = (storeAPI) => (next) => async (action) => {
   if (action.type === 'classes/addEvent') {
     try {
       if (action.payload?.day) {
+        console.log(action.payload.day);
         const eventsCollection = collection(db, 'events');
         const dayQuery = query(
           eventsCollection,
