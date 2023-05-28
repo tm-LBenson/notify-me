@@ -10,7 +10,7 @@ import { setSelectedDay } from '@src/store/slices/classes/selectedSlice';
 const DayAccordion = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [dayName, setDayName] = useState('');
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const { selectedClass, selectedDay } = useSelector((state) => state.selected);
   const { days } = useSelector((state) => state.classes);
@@ -52,7 +52,7 @@ const DayAccordion = () => {
           selectedDay && !isOpen ? '' : 'selected-header'
         }`}
       >
-        {selectedDay && !isOpen ? `Date: ${selectedDay.dayName}` : 'Add Day'}
+        {selectedDay && !isOpen ? `Date: ${selectedDay.dayName}` : 'Select Day'}
       </h2>
 
       {isOpen && (

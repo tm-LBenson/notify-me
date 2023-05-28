@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   addEvent,
   addMentoringSession,
-  setSelectedMentoringSession,
 } from '@src/store/slices/classes/classesSlice';
 import { addStudent } from '@src/store/slices/classes/studentSlice';
 import { setSelectedStudent as setSelectedStudentRedux } from '@src/store/slices/classes/selectedSlice';
@@ -18,7 +17,7 @@ const Mentorships = () => {
   const [breakEnd, setBreakEnd] = useState('');
   const [manualInput, setManualInput] = useState(false);
   const [addBreak, setAddBreak] = useState(false);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [isAddingStudent, setIsAddingStudent] = useState(false);
   const [isAddingMentoringSession, setIsAddingMentoringSession] =
