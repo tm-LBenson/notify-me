@@ -38,15 +38,16 @@ const classesSlice = createSlice({
     addEvent: (state, action) => {
       if (action.payload?.newTimeBlock?.data) {
         const day = state.events.find(
-          (event) => event.dayFirebaseId === action.payload.dayFirebaseId,
+          (event) => event.dayFirebaseId === action.payload.day.firebaseId,
         );
+
 
         if (day) {
           day.events.push(action.payload.newTimeBlock.data);
-        } else if (action?.payload?.firebaseId) {
+        } else if (action?.payload?.day.firebaseId) {
           state.events.push({
-            firebaseId: action.payload.firebaseId,
-            dayFirebaseId: action.payload.dayFirebaseId,
+            firebaseId: action.payload.day.firebaseId,
+            dayFirebaseId: action.payload.day.firebaseId,
             events: [action.payload.newTimeBlock.data],
           });
         }
