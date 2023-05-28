@@ -51,9 +51,39 @@ const EventAccordion = ({ onAddTimeBlock }) => {
 
     const newEvent = {
       type: eventType,
-      timestamp: timestamp || new Date().toISOString(),
+      timestamp: timestamp || new Date().toISOString().substring(11, 16),
       notes,
     };
+
+    // Extracting last event from sorted events
+    const filteredEvents = events.filter((event) => {
+      if (selectedDay) {
+        return event.dayFirebaseId === selectedDay.firebaseId;
+      }
+    });
+
+    const sortedEvents = [...(filteredEvents[0]?.events || [])].sort((a, b) => {
+      return a.timestamp.localeCompare(b.timestamp);
+    });
+
+    const lastEvent = sortedEvents[sortedEvents.length - 1];
+
+    // Comparing timestamps
+    if (lastEvent) {
+      const newTimestampParts = newEvent.timestamp.split(':');
+      const lastEventTimestampParts = lastEvent.timestamp.split(':');
+
+      const newTimestamp =
+        parseInt(newTimestampParts[0]) * 60 + parseInt(newTimestampParts[1]);
+      const lastEventTimestamp =
+        parseInt(lastEventTimestampParts[0]) * 60 +
+        parseInt(lastEventTimestampParts[1]);
+
+      if (newTimestamp <= lastEventTimestamp) {
+        alert('New event cannot occur before the last event.');
+        return;
+      }
+    }
 
     if (selectedDay) {
       dispatch(
@@ -67,7 +97,7 @@ const EventAccordion = ({ onAddTimeBlock }) => {
     }
 
     setNotes('');
-    setTimestamp(new Date().toISOString().substring(0, 16));
+    setTimestamp(new Date().toISOString().substring(11, 16));
     setEventType(eventOptions[0]);
   };
 
