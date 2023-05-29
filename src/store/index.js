@@ -14,6 +14,7 @@ import addEventMiddleware from './middleware/addEventMiddleware';
 import getAllEventsMiddleware from './middleware/getAllEventsMiddleware';
 import studentSlice from './slices/classes/studentSlice';
 import addStudentMiddleware from './middleware/addStudentMiddleware';
+import getAllStudentsMiddleware from './middleware/getAllStudentsMiddleware';
 
 const store = configureStore({
   reducer: {
@@ -33,7 +34,7 @@ const store = configureStore({
     addEventMiddleware,
     getAllEventsMiddleware,
     addStudentMiddleware,
-    getAllEventsMiddleware,
+    getAllStudentsMiddleware,
   ],
 });
 

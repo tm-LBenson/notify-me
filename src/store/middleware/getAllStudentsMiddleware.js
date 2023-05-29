@@ -11,7 +11,7 @@ const getAllStudentsMiddleware = (storeAPI) => (next) => async (action) => {
         firebaseId: doc.id,
         ...doc.data(),
       }));
-
+      console.log(students);
       action.payload = students;
     } catch (err) {
       console.error('Error fetching students: ', err);
