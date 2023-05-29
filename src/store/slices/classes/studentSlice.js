@@ -15,22 +15,14 @@ const studentsSlice = createSlice({
     getAllStudents: (state, action) => {
       state.students = action.payload;
     },
-    addMentoringSession: (state, action) => {
-      state.mentorSessions.push(action.payload);
-    },
 
     addMentoringSession: (state, action) => {
       console.log(action.payload);
-      const classItem = state.classes.find(
-        (classItem) => classItem.className === action.payload.className,
+      const student = state.students.find(
+        (student) => student.classFirebaseId === action.payload.classFirebaseId,
       );
-      if (classItem) {
-        const day = classItem.days.find(
-          (day) => day.id === action.payload.dayId,
-        );
-        if (day) {
-          day.mentoringSessions.push(action.payload.mentoringSession);
-        }
+      if (student) {
+        day.mentoringSessions.push(action.payload.mentoringSession);
       }
     },
   },

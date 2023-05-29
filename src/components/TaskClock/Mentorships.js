@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addMentoringSession } from '@src/store/slices/classes/classesSlice';
+
 import {
+  addMentoringSession,
   addStudent,
   getAllStudents,
 } from '@src/store/slices/classes/studentSlice';
@@ -21,6 +22,8 @@ const Mentorships = () => {
   const [eventType, setEventType] = useState('');
   const [eventOptions, setEventOptions] = useState(['Start Mentoring Session']);
   const [newStudentForm, setNewStudentForm] = useState(false);
+  const { selectedClass } = useSelector((state) => state.selected);
+  console.log(selectedClass);
   useEffect(() => {
     dispatch(getAllStudents());
   }, [dispatch]);
@@ -56,6 +59,7 @@ const Mentorships = () => {
     if (studentName.trim() !== '') {
       const newStudent = {
         name: studentName,
+        classFirebaseId: selectedClass.firebaseId,
       };
       dispatch(addStudent(newStudent));
       setStudentName('');
