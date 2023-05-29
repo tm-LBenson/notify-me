@@ -1,0 +1,60 @@
+
+.horizontal-timeline {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.horizontal-timeline .items {
+  border-top: 3px solid #e9ecef;
+}
+
+.horizontal-timeline .items .items-list {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  padding-top: 70px;
+  margin-right: 0;
+  white-space: nowrap;
+  min-width: 120px;
+}
+
+.horizontal-timeline .items .items-list:before {
+  content: '';
+  position: absolute;
+  height: 36px;
+  border-right: 2px dashed #dee2e6;
+  top: 0;
+}
+
+.horizontal-timeline .items .items-list .event-date {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  right: 0;
+  width: 75px;
+  margin: 0 auto;
+  font-size: 0.9rem;
+  padding-top: 8px;
+}
+
+@media (min-width: 1140px) {
+  .horizontal-timeline .items .items-list {
+    display: inline-block;
+    width: 24%;
+    padding-top: 45px;
+  }
+
+  .horizontal-timeline .items .items-list .event-date {
+    margin-top: 25px;
+    top: -15px;
+    z-index: 99;
+    font-size: 1.3rem;
+  }
+}
+
+.text-muted {
+  font-size: 1.5rem;
+}
+.bold {
+  font-weight: 700;
+}

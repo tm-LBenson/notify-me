@@ -1,65 +1,70 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDay } from '@src/store/slices/classes/classesSlice';
+import {
+  addDay,
+  getAllDays,
+  getAllEvents,
+} from '@src/store/slices/classes/classesSlice';
 import { setSelectedDay } from '@src/store/slices/classes/selectedSlice';
 
 const DayAccordion = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [dayName, setDayName] = useState('');
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const { selectedClass, selectedDay } = useSelector((state) => state.selected);
+  const { days } = useSelector((state) => state.classes);
 
-  const handleDaySelect = (day) => {
-    dispatch(setSelectedDay(day));
-    setIsOpen(false);
-  };
+  useEffect(() => {
+    dispatch(getAllDays());
+  }, [dispatch]);
 
-  const handleHeadingClick = () => {
-    setIsOpen((prevIsOpen) => !prevIsOpen);
-  };
-
-  const handleNewButtonClick = () => {
-    setIsFormOpen((prevIsFormOpen) => !prevIsFormOpen);
-  };
+  useEffect(() => {
+    if (selectedDay) {
+      dispatch(getAllEvents());
+    }
+  }, [dispatch, selectedDay]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const newDay = {
-      id: crypto.randomUUID(),
       dayName,
-      events: [],
-      mentoringSessions: [],
     };
-    dispatch(addDay({ className: selectedClass.className, newDay }));
+    dispatch(addDay({ class: selectedClass, newDay }));
+
     dispatch(setSelectedDay(newDay));
     setDayName('');
     setIsFormOpen(false);
     setIsOpen(false);
   };
 
-  const handleChange = (event) => {
-    setDayName(event.target.value);
-  };
+  const filteredDays = days.filter((day) => {
+    return day.classFirebaseId === selectedClass.firebaseId;
+  });
 
   return (
     <div className="accordion">
       <h2
-        onClick={handleHeadingClick}
+        onClick={() => {
+          setIsOpen((prevIsOpen) => !prevIsOpen);
+        }}
         className={`clickable-heading ${
           selectedDay && !isOpen ? '' : 'selected-header'
         }`}
       >
-        {selectedDay && !isOpen ? `Date: ${selectedDay.dayName}` : 'Add Day'}
+        {selectedDay && !isOpen ? `Date: ${selectedDay.dayName}` : 'Select Day'}
       </h2>
 
       {isOpen && (
         <div>
-          {selectedClass?.days?.length > 0 ? (
-            selectedClass.days.map((day) => (
+          {filteredDays?.length > 0 ? (
+            filteredDays.map((day) => (
               <div
-                onClick={() => handleDaySelect(day)}
-                key={day.id}
+                onClick={() => {
+                  dispatch(setSelectedDay(day));
+                  setIsOpen(false);
+                }}
+                key={day.firebaseId}
                 className={`item ${
                   selectedDay && selectedDay.id === day.id ? 'selected' : ''
                 }`}
@@ -72,7 +77,7 @@ const DayAccordion = () => {
           )}
           <div className="button-container">
             <button
-              onClick={handleNewButtonClick}
+              onClick={() => setIsFormOpen((prevIsFormOpen) => !prevIsFormOpen)}
               className={`btn new-button ${isFormOpen ? 'cancel' : ''}`}
             >
               {isFormOpen ? 'Cancel' : 'Add Day'}
@@ -83,7 +88,7 @@ const DayAccordion = () => {
                 <input
                   type="date"
                   value={dayName}
-                  onChange={handleChange}
+                  onChange={(event) => setDayName(event.target.value)}
                   placeholder={new Date().toLocaleDateString('en-US')}
                   required
                 />

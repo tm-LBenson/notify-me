@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addClass } from '@src/store/slices/classes/classesSlice';
+import {
+  addClass,
+  getAllClasses,
+} from '@src/store/slices/classes/classesSlice';
 import { setSelectedClass } from '@src/store/slices/classes/selectedSlice';
 
 const ClassList = () => {
@@ -11,6 +14,10 @@ const ClassList = () => {
   const { classes } = useSelector((state) => state.classes);
   const { selectedClass } = useSelector((state) => state.selected);
 
+  useEffect(() => {
+    dispatch(getAllClasses());
+  }, [dispatch]);
+
   const handleClassSelect = (classItem) => {
     dispatch(setSelectedClass(classItem));
     setIsOpen(false);
@@ -20,16 +27,20 @@ const ClassList = () => {
     setIsFormOpen(!isFormOpen);
   };
 
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    if (classes.length > 0) {
+      const newClass = classes[classes.length - 1];
+      dispatch(setSelectedClass(newClass));
+    }
+  }, [classes, dispatch]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (className.trim() !== '') {
       const newClass = {
-        id: crypto.randomUUID(),
         className,
-        days: [],
       };
-      dispatch(addClass(newClass));
-      dispatch(setSelectedClass(newClass));
+      await dispatch(addClass(newClass));
       setClassName('');
       setIsFormOpen(false);
       setIsOpen(false);
@@ -58,13 +69,15 @@ const ClassList = () => {
           {classes.map((classItem) => (
             <div
               onClick={() => handleClassSelect(classItem)}
-              key={classItem.id}
+              key={classItem.firebaseId}
               className={`item ${
-                selectedClass && selectedClass.id === classItem.id
+                selectedClass &&
+                selectedClass.firebaseId === classItem.firebaseId
                   ? 'selected'
                   : ''
               }`}
             >
+              {console.log()}
               {classItem.className}
             </div>
           ))}

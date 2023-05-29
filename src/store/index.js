@@ -5,7 +5,16 @@ import projects from './slices/projects';
 import selectedProject from './slices/selectedProject';
 import classesSlice from './slices/classes/classesSlice';
 import selectedSlice from './slices/classes/selectedSlice';
+
+import getAllClassesMiddleware from './middleware/getAllClassesMiddleware';
+import addClassMiddleware from './middleware/addClassMiddleware';
+import addDayMiddleware from './middleware/addDayMiddleware';
+import getAllDaysMiddleware from './middleware/getAllDaysMiddleware';
+import addEventMiddleware from './middleware/addEventMiddleware';
+import getAllEventsMiddleware from './middleware/getAllEventsMiddleware';
 import studentSlice from './slices/classes/studentSlice';
+import addStudentMiddleware from './middleware/addStudentMiddleware';
+
 const store = configureStore({
   reducer: {
     projects,
@@ -15,7 +24,17 @@ const store = configureStore({
     students: studentSlice,
   },
 
-  middleware: [loggerMiddleware],
+  middleware: [
+    loggerMiddleware,
+    getAllClassesMiddleware,
+    addClassMiddleware,
+    getAllDaysMiddleware,
+    addDayMiddleware,
+    addEventMiddleware,
+    getAllEventsMiddleware,
+    addStudentMiddleware,
+    getAllEventsMiddleware,
+  ],
 });
 
 export default store;
