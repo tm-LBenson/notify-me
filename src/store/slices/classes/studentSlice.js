@@ -18,8 +18,20 @@ const studentsSlice = createSlice({
     addMentoringSession: (state, action) => {
       state.mentorSessions.push(action.payload);
     },
-    getAllMentoringSession: (state, action) => {
-      state.mentorSessions = action.payload;
+
+    addMentoringSession: (state, action) => {
+      console.log(action.payload);
+      const classItem = state.classes.find(
+        (classItem) => classItem.className === action.payload.className,
+      );
+      if (classItem) {
+        const day = classItem.days.find(
+          (day) => day.id === action.payload.dayId,
+        );
+        if (day) {
+          day.mentoringSessions.push(action.payload.mentoringSession);
+        }
+      }
     },
   },
 });

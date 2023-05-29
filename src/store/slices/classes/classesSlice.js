@@ -41,7 +41,6 @@ const classesSlice = createSlice({
           (event) => event.dayFirebaseId === action.payload.day.firebaseId,
         );
 
-
         if (day) {
           day.events.push(action.payload.newTimeBlock.data);
         } else if (action?.payload?.day.firebaseId) {
@@ -53,20 +52,6 @@ const classesSlice = createSlice({
         }
       }
     },
-
-    addMentoringSession: (state, action) => {
-      const classItem = state.classes.find(
-        (classItem) => classItem.className === action.payload.className,
-      );
-      if (classItem) {
-        const day = classItem.days.find(
-          (day) => day.id === action.payload.dayId,
-        );
-        if (day) {
-          day.mentoringSessions.push(action.payload.mentoringSession);
-        }
-      }
-    },
   },
 });
 
@@ -75,7 +60,6 @@ export const {
   addDay,
   setFirebaseId,
   addEvent,
-  addMentoringSession,
   getAllDays,
   getAllEvents,
   getAllClasses,
