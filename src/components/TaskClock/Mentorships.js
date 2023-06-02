@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   addMentoringSession,
   addStudent,
+  getAllMentoringSession,
   getAllStudents,
 } from '@src/store/slices/classes/studentSlice';
 
@@ -22,15 +23,17 @@ const Mentorships = () => {
   const [eventType, setEventType] = useState('');
   const [eventOptions, setEventOptions] = useState(['Start Mentoring Session']);
   const [newStudentForm, setNewStudentForm] = useState(false);
-  const { selectedClass } = useSelector((state) => state.selected);
-  console.log(selectedClass);
+  const { selectedClass, selectedDay } = useSelector((state) => state.selected);
+
   useEffect(() => {
     dispatch(getAllStudents());
+    dispatch(getAllMentoringSession([]));
   }, [dispatch]);
+
   useEffect(() => {
     const filteredEvents = mentorSessions.filter((event) => {
       if (selectedStudent) {
-        return event.studentId === selectedStudent.id;
+        return event.studentId === selectedStudent.firebaseId;
       }
     });
 
@@ -44,8 +47,7 @@ const Mentorships = () => {
     if (!lastEvent || lastEvent.type === 'End Mentoring Session') {
       options = ['Start Mentoring Session'];
     } else if (
-      lastEvent.type === 'Start Mentoring Session' ||
-      lastEvent.type === 'Add notes'
+      sortedEvents.some((event) => event.type !== 'End Mentoring Session')
     ) {
       options = ['Add notes', 'End Mentoring Session'];
     }
@@ -69,12 +71,51 @@ const Mentorships = () => {
   const handleMentoringSessionSubmit = (event) => {
     event.preventDefault();
 
+    if (!eventOptions.includes(eventType)) {
+      alert('Invalid event sequence');
+      return;
+    }
+
     const newSession = {
       type: eventType,
       notes,
       timestamp: timestamp || new Date().toISOString().substring(11, 16),
-      studentId: selectedStudent.id,
+      studentId: selectedStudent.firebaseId,
+      selectedDayId: selectedDay.firebaseId,
+      selectedClassId: selectedClass.firebaseId,
     };
+
+    // Extracting last session from sorted sessions
+    const filteredSessions = mentorSessions.filter((session) => {
+      if (selectedStudent) {
+        return session.studentId === selectedStudent.firebaseId;
+      }
+    });
+
+    const sortedEvents = filteredSessions
+      .flatMap((session) => session.events)
+      .sort((a, b) => {
+        return a.timestamp.localeCompare(b.timestamp);
+      });
+
+    const lastEvent = sortedEvents[sortedEvents.length - 1];
+
+    // Comparing timestamps
+    if (lastEvent && lastEvent.timestamp) {
+      const newTimestampParts = newSession.timestamp.split(':');
+      const lastEventTimestampParts = lastEvent.timestamp.split(':');
+
+      const newTimestamp =
+        parseInt(newTimestampParts[0]) * 60 + parseInt(newTimestampParts[1]);
+      const lastEventTimestamp =
+        parseInt(lastEventTimestampParts[0]) * 60 +
+        parseInt(lastEventTimestampParts[1]);
+
+      if (newTimestamp <= lastEventTimestamp) {
+        alert('New session cannot occur before the last event.');
+        return;
+      }
+    }
 
     dispatch(addMentoringSession(newSession));
 
@@ -82,6 +123,7 @@ const Mentorships = () => {
     setNotes('');
     setTimestamp('');
   };
+
   return (
     <div className="mentorships">
       <h2

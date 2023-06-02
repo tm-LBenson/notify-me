@@ -77,7 +77,7 @@ const ClassList = () => {
                   : ''
               }`}
             >
-              {console.log()}
+            
               {classItem.className}
             </div>
           ))}

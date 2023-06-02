@@ -4,11 +4,17 @@ import { useSelector } from 'react-redux';
 
 export default function Timeline() {
   const { events } = useSelector((state) => state.classes);
-  console.log(events);
+  const { mentorSessions } = useSelector((state) => state.students);
   const { selectedDay } = useSelector((state) => state.selected);
-  const filteredEvents = events.filter((event) => {
+
+  const allEvents = [...events, ...mentorSessions];
+
+  const filteredEvents = allEvents.filter((event) => {
     if (selectedDay) {
-      return event.dayFirebaseId === selectedDay.firebaseId;
+      return (
+        event.dayFirebaseId === selectedDay.firebaseId ||
+        event.dayId === selectedDay.firebaseId
+      );
     }
   });
 
