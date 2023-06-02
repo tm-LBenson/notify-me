@@ -15,6 +15,8 @@ import getAllEventsMiddleware from './middleware/getAllEventsMiddleware';
 import studentSlice from './slices/classes/studentSlice';
 import addStudentMiddleware from './middleware/addStudentMiddleware';
 import getAllStudentsMiddleware from './middleware/getAllStudentsMiddleware';
+import addMentoringSessionMiddleware from './middleware/addMentoringSessionMiddleware';
+import getAllMentorSessionsMiddleware from './middleware/getAllMentorSessionsMiddleware';
 
 const store = configureStore({
   reducer: {
@@ -26,7 +28,6 @@ const store = configureStore({
   },
 
   middleware: [
-    loggerMiddleware,
     getAllClassesMiddleware,
     addClassMiddleware,
     getAllDaysMiddleware,
@@ -35,6 +36,8 @@ const store = configureStore({
     getAllEventsMiddleware,
     addStudentMiddleware,
     getAllStudentsMiddleware,
+    getAllMentorSessionsMiddleware,
+    addMentoringSessionMiddleware,
   ],
 });
 

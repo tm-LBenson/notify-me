@@ -16,14 +16,11 @@ const studentsSlice = createSlice({
       state.students = action.payload;
     },
 
+    getAllMentoringSession: (state, action) => {
+      state.mentorSessions = action.payload;
+    },
     addMentoringSession: (state, action) => {
-      console.log(action.payload);
-      const student = state.students.find(
-        (student) => student.classFirebaseId === action.payload.classFirebaseId,
-      );
-      if (student) {
-        day.mentoringSessions.push(action.payload.mentoringSession);
-      }
+      state.mentorSessions.push(action.payload);
     },
   },
 });
